@@ -1,0 +1,36 @@
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.conceitos {
+  background-color: #171717;
+}
+
+.txt-conceito {
+  width: 600px;
+}
+
+.card-area {
+  margin-top: 40px;
+}
+
+.corpo-card-servico {
+  cursor: pointer;
+  position: relative;
+  border: 1px solid #eee;
+  background: #fff;
+  padding: 30px;
+  overflow: hidden;
+}
+
+.icone-card-servico {
+  position: absolute;
+  right: 22px;
+}
+
+.icone-card-servico {
+  color: #ff8200;
+  font-size: 48px;
+}
+
+/*# sourceMappingURL=indexUsuario.css.map */

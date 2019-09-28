@@ -1,0 +1,94 @@
+.menu {
+  background-color: #171717 !important;
+}
+
+.nav-entrar svg {
+  width: 15px;
+  height: 15px;
+  fill: #ffffff;
+}
+
+.cabecalho {
+  color: #171717;
+  background-image: url("../imagens/fundo.jpg") !important;
+  background-size: cover;
+  width: 100%;
+  height: 900px;
+}
+
+.cabecalho h1 {
+  width: 500px;
+  font-size: 4rem;
+}
+
+.cabecalho-container {
+  position: relative;
+  top: 30%;
+}
+
+.conceitos {
+  background-color: #171717;
+}
+
+.txt-conceito {
+  width: 600px;
+}
+
+.lista-opcoes svg {
+  width: 150px;
+  height: auto;
+}
+
+.lista-opcoes h1 {
+  color: #ff8200;
+  font-size: 4rem;
+}
+
+.lista-opcoes h6 {
+  color: #171717;
+}
+
+.tit-opcao {
+  width: 500px;
+}
+
+.num-opcao {
+  z-index: -99;
+  position: relative;
+}
+
+.num-opcao h6 {
+  font-size: 15rem;
+  margin-left: 75px;
+  opacity: 0.5;
+  color: #ff8200;
+}
+
+.footer {
+  background-color: #171717;
+}
+
+.lista-logo-footer li svg {
+  width: 35px;
+  height: 35px;
+  fill: #ffffff;
+}
+
+.logo-footer {
+  width: 150px;
+  height: auto;
+}
+
+.lista-logo-footer li svg:hover, .nav-entrar:hover svg {
+  fill: #ff8200;
+}
+
+.itens-footer li h6 {
+  color: #ff8200;
+}
+
+.itens-footer li a {
+  color: #ffffff;
+}
+
+/*# sourceMappingURL=homepage.css.map */
