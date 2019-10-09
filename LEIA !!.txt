@@ -18,3 +18,9 @@ Assista a playlist para aprender a mexer com o bootstrap (Variaveis, cores, form
 comente o código em tudo o que é possível e não apague nenhum arquivo fora da pasta "Arquivo"
 
 qualquer duvida chama no zep zep do grupo
+
+
+
+***** Banco de Dados *****
+Utilizar 1º o script "create.sql" e em seguida usar a opção Data Import/Restore selecionando o arquivo "backupDbProjeto.sql" para inserção de tabelas e dados.
+(arquivos "insert" e "insertBairros" são apenas para fins de construção do banco de dados, não sendo necessária a execução)
