@@ -1,8 +1,13 @@
-/*INSERT - Tabela ESTADOS*/
-INSERT INTO Estados (nomeEstado, siglaEstado) values ('São Paulo', 'SP');
+/*INSERT - Tabela Clientes*/
+INSERT INTO Clientes (nomeCliente, telCliente, cpfCliente, emailCliente, senhaCliente, dtCadastro) 
+    values ('cliente', '11998761234', '95132945872', 'cliente@email.com', MD5('cliente1234'), NOW());
 
-/*INSERT - Tabela MUNICIPIOS*/
-INSERT INTO Municipios (nomeMunicipio, idEstado) values ('São Paulo', 1);
+/*INSERT - Tabela TbStatus*/
+INSERT INTO TbStatus (descricaoStatus) VALUE ('Pendente');
+INSERT INTO TbStatus (descricaoStatus) VALUE ('Aprovado');
+INSERT INTO TbStatus (descricaoStatus) VALUE ('Agendado');
+INSERT INTO TbStatus (descricaoStatus) VALUE ('Realizado');
+INSERT INTO TbStatus (descricaoStatus) VALUE ('Cancelado');
 
 /*INSERT - Tabela Bancos*/
 INSERT INTO Bancos (idbanco, banco) values (001,'001 - BANCO DO BRASIL');
@@ -21,6 +26,11 @@ INSERT INTO Bancos (idbanco, banco) values (218,'218 - BANCO BS2');
 INSERT INTO Bancos (idbanco, banco) values (735,'735 - NEON');
 INSERT INTO Bancos (idbanco, banco) values (323,'323 - MERCADO PAGO');
 INSERT INTO Bancos (idbanco, banco) values (336,'336 - BANCO C6');
+
+/*INSERT - Tabela Prestadoras*/
+INSERT INTO Prestadoras (nomePrestadora, telPrestadora, cpfPrestadora, emailPrestadora, senhaPrestadora, idBanco, agenciaBanco, contaBanco, dtCadastro)
+    values ('prestadora', '11987651234', '48281625856', 'prestadora@email.com', MD5('prestadora1234'), 
+    001, 0123, '123456-7', NOW());
 
 /*INSERT - Tabela Áreas*/
 INSERT INTO Areas (nomeArea) value ('Manutenção Elétrica');
@@ -81,3 +91,11 @@ INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) value
 INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Guarda-roupa - portas de correr',0,5);
 INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Mesa',0,5);
 INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Prateleira',0,5);
+
+/*INSERT - Tabela Especialidades das Prestadoras*/
+INSERT INTO Espec_Prestadoras (idEspecialidade, idPrestadora, idStatus) values (1, 1, 2);
+INSERT INTO Espec_Prestadoras (idEspecialidade, idPrestadora, idStatus) values (3, 1, 2);
+INSERT INTO Espec_Prestadoras (idEspecialidade, idPrestadora, idStatus) values (5, 1, 2);
+INSERT INTO Espec_Prestadoras (idEspecialidade, idPrestadora, idStatus) values (6, 1, 2);
+INSERT INTO Espec_Prestadoras (idEspecialidade, idPrestadora, idStatus) values (8, 1, 2);
+INSERT INTO Espec_Prestadoras (idEspecialidade, idPrestadora, idStatus) values (10, 1, 2);
