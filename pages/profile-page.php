@@ -1,3 +1,7 @@
+<?php
+	require ("../assets/php/logincheck.php");
+?>
+
 <!DOCTYPE html>
 
 <html lang="pt-br">
@@ -20,39 +24,46 @@
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg bg-dark">
     <div class="container">
-      <div class="navbar-translate">
-        <a class="navbar-brand" href="#">delas</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#example-navbar-primary"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-bar bar1"></span>
-          <span class="navbar-toggler-bar bar2"></span>
-          <span class="navbar-toggler-bar bar3"></span>
-        </button>
-      </div>
-      <div class="collapse navbar-collapse" id="example-navbar-primary">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">
-              <i class="nc-icon nc-sun-fog-29"></i>
-              <p>Ajuda</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="services-page.html">
-              <i class="nc-icon nc-single-copy-04"></i>
-              <p>Meus Serviços</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="profile-page.html">
-              <i class="nc-icon nc-single-02  "></i>
-              <p>Meu Perfil</p>
-            </a>
-          </li>
-        </ul>
-      </div>
+        <div class="navbar-translate">
+            <a class="navbar-brand" href="dashboard.php">delas</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#example-navbar-primary" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-bar bar1"></span>
+                <span class="navbar-toggler-bar bar2"></span>
+                <span class="navbar-toggler-bar bar3"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="example-navbar-primary">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-question-circle"></i>
+                        <p>Ajuda</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="services-page.php">
+                        <i class="fas fa-cash-register"></i>
+                        <p>Meus Serviços</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="profile-page.php">
+                        <i class="fas fa-female"></i>
+                        <p>Meu Perfil</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../assets/php/logout.php">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <p>Sair</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
-  </nav>
+</nav>
   <!-- End Navbar -->
 
   <div class="wrapper">
@@ -62,24 +73,24 @@
       <div class="row">
         <div class="col-xl-4 order-xl-2">
           <div class="card">
-            <img src="../assets/img/faces/avatar.jpg" alt="Image placeholder" class="card-img-top">
+            <img src="../assets/img/faces/joe-gardner-2.jpg" alt="Image placeholder" class="card-img-top">
             <div class="card-header pt-8 pt-md-4 pb-md-4">
               <div class="d-flex justify-content-between">
-                <button class="btn btn-outline-default btn-round p-2">
-                  <i class="nc-icon nc-single-copy-04"></i> Serviços
-                </button>
+                <a href="services-page.php" class="btn btn-outline-default btn-round p-2">
+                  <i class="fas fa-cash-register"></i> Serviços
+                </a>
               </div>
             </div>
             <div class="card-body">
               <div class="text-center">
-                <h6>Jessica Jones, 27</h6>
+                <h6>Ingrid Oliveira</h6>
                 <i class="ni location_pin mr-2"></i>
-                <h6>Bucharest, Romania</h6>
+                <h6>23 Anos</h6>
               </div>
             </div>
           </div>
 
-          <div class="card">
+          <!--<div class="card">
             <div class="card-body">
               This is some text within a card body.
             </div>
@@ -88,7 +99,7 @@
             <div class="card-body">
               This is some text within a card body.
             </div>
-          </div>
+          </div>-->
 
         </div>
 
@@ -97,7 +108,7 @@
             <div class="card-header">
               <div class="row align-items-center">
                 <div class="col-8">
-                  <h6>Perfil</h36>
+                  <h6>Perfil</h6>
                 </div>
                 <div class="col-4 text-right">
                   <a href="#" class="btn btn-outline-default btn-round">Salvar</a>
@@ -114,14 +125,14 @@
                       <div class="form-group">
                         <label class="form-control-label" for="nome">Nome Completo</label>
                         <input type="text" id="nome" class="form-control" placeholder="Nome completo"
-                          value="Tiago Matos dos Santos">
+                          value="Ingrid Oliveira">
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="email">Endereço de e-mail</label>
                         <input type="email" id="email" class="form-control" placeholder="Endereço de e-mail"
-                          value="tiagos1401@gmail.com">
+                          value="ingrid.oliveira96@gmail.com">
                       </div>
                     </div>
                   </div>
@@ -129,13 +140,13 @@
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="nome">Telefone</label>
-                        <input type="tel" id="nome" class="form-control" placeholder="Telefone" value="11952772488">
+                        <input type="tel" id="nome" class="form-control" placeholder="Telefone" value="21952772488">
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="label-control" for="input-address">Nascimento</label>
-                        <input type="text" class="form-control datetimepicker" placeholder="27/03/2019"
+                        <input type="text" class="form-control datetimepicker" placeholder="11/09/1996"
                           showHours="false" />
                       </div>
                     </div>
@@ -209,12 +220,10 @@
                 </div>
                 <hr class="my-4">
                 <!-- Description -->
-                <h6 class="heading-small text-muted mb-4">About me</h6>
+                <h6 class="heading-small text-muted mb-4">Sobre mim!</h6>
                 <div class="pl-lg-4">
                   <div class="form-group">
-                    <label class="form-control-label">About Me</label>
-                    <textarea rows="4" class="form-control"
-                      placeholder="A few words about you ...">A beautiful premium dashboard for Bootstrap 4.</textarea>
+                    <textarea rows="4" class="form-control" placeholder="Escreva algo sobre você"></textarea>
                   </div>
                 </div>
               </form>
@@ -225,6 +234,7 @@
 
     </div>
   </div>
+
   <!--   Core JS Files   -->
   <script src="../assets/js/core/jquery.min.js" type="text/javascript"></script>
   <script src="../assets/js/core/popper.min.js" type="text/javascript"></script>
@@ -238,6 +248,8 @@
   <script src="../assets/js/plugins/bootstrap-datepicker.js" type="text/javascript"></script>
   <!-- Control Center for Paper Kit: parallax effects, scripts for the example pages etc -->
   <script src="../assets/js/paper-kit.js?v=2.2.0" type="text/javascript"></script>
+  
+  <script src="https://kit.fontawesome.com/d70538755c.js" crossorigin="anonymous"></script>
 
   <script>
     $('.datetimepicker').datetimepicker({

@@ -6,8 +6,9 @@ use dbProjetoTCC;
 create table Clientes (
 	idCliente INT(5) UNSIGNED NOT NULL AUTO_INCREMENT,
     nomeCliente VARCHAR(100) NOT NULL,
-    telCliente VARCHAR(11) NOT NULL,
     cpfCliente CHAR(11),
+    telCliente VARCHAR(11) NOT NULL,
+    dtNascCliente DATE,
     emailCliente VARCHAR(100) NOT NULL,
     senhaCliente VARCHAR(100) NOT NULL,
     ativo INT(1) UNSIGNED DEFAULT '1',
@@ -26,8 +27,9 @@ create table Bancos (
 create table Prestadoras (
 	idPrestadora INT(5) UNSIGNED NOT NULL AUTO_INCREMENT,
     nomePrestadora VARCHAR(100) NOT NULL,
-    telPrestadora VARCHAR(11) NOT NULL,
     cpfPrestadora CHAR(11),
+    telPrestadora VARCHAR(11) NOT NULL,
+    dtNascPrestadora DATE,
     emailPrestadora VARCHAR(100) NOT NULL,
     senhaPrestadora VARCHAR(50) NOT NULL,
     idBanco INT(3) UNSIGNED NOT NULL,
