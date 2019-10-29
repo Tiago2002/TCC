@@ -1,21 +1,27 @@
 <?php
-    if (isset($_POST["register"])) {
-        $connection = new mysqli("localhost", "root", "", "dbProjetoTCC");
-        
-        $name       = $connection->real_escape_string($_POST["txtName"]);
-        $tel        = $connection->real_escape_string($_POST["txtTel"]);
-        $email      = $connection->real_escape_string($_POST["txtEmail"]);
-        $password   = md5($connection->real_escape_string($_POST["txtPassword"]));
-        $verifyPass = md5($connection->real_escape_string($_POST["txtConfPass"]));
-        
-        
-        $data = $connection->query("INSERT INTO Clientes (nomeCliente, telCliente, emailCliente, senhaCliente, dtCadastro) VALUES ('$name', '$tel', '$email', '$password', NOW())");
-        
-        if ($data === false)
-            echo "Connection error!";
-        else
-            header("location: ../../pages/login-page.php");
-        
+if (isset($_POST["txtName"]) || isset($_POST["txtTel"]) || isset($_POST["txtEmail"]) || isset($_POST["txtPassword"])) {
+
+    include('conexao.php');
+
+    $name       = $conexao->real_escape_string($_POST["txtName"]);
+    $tel        = $conexao->real_escape_string($_POST["txtTel"]);
+    $email      = $conexao->real_escape_string($_POST["txtEmail"]);
+    $password   = md5($conexao->real_escape_string($_POST["txtPassword"]));
+
+    
+    $data = $conexao->query("INSERT INTO Clientes (nomeCliente, telCliente, emailCliente, senhaCliente, dtCadastro) VALUES ('$name', '$tel', '$email', '$password', NOW())");
+    
+    if ($data === false){
+        echo "Connection error!";
     }
-    mysqli_close($connection);
+    else{
+        header("location: ../../pages/login-page.php");
+    }
+
+    mysqli_close($conexao);
+        
+    } 
+    else{
+        header("location: ../../index.php");
+    }
 ?>
