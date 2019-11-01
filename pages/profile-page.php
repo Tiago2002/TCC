@@ -1,5 +1,15 @@
 <?php
-	require ("../assets/php/logincheck.php");
+  require("../assets/php/logincheck.php");
+
+    include("../assets/php/conexao.php");
+
+    $email = $_SESSION["email"];
+
+    $sql = "SELECT nomeCliente, telCliente, dtNascCliente, emailCliente FROM Clientes WHERE emailCliente = '$email'";
+
+    $consulta = $conexao->query($sql);
+
+    $dados = (mysqli_fetch_assoc($consulta));
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +24,6 @@
     name='viewport' />
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
   <!-- CSS Files -->
   <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
   <link href="../assets/css/paper-kit.css?v=2.2.0" rel="stylesheet" />
@@ -73,7 +82,7 @@
       <div class="row">
         <div class="col-xl-4 order-xl-2">
           <div class="card">
-            <img src="../assets/img/faces/joe-gardner-2.jpg" alt="Image placeholder" class="card-img-top">
+            <img src="../assets/img/faces/avatar.jpg" alt="Image placeholder" class="card-img-top">
             <div class="card-header pt-8 pt-md-4 pb-md-4">
               <div class="d-flex justify-content-between">
                 <a href="services-page.php" class="btn btn-outline-default btn-round p-2">
@@ -83,7 +92,7 @@
             </div>
             <div class="card-body">
               <div class="text-center">
-                <h6>Ingrid Oliveira</h6>
+                <h6><?php echo $dados['nomeCliente']; ?></h6>
                 <i class="ni location_pin mr-2"></i>
                 <h6>23 Anos</h6>
               </div>
@@ -124,15 +133,15 @@
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="nome">Nome Completo</label>
-                        <input type="text" id="nome" class="form-control" placeholder="Nome completo"
-                          value="Ingrid Oliveira">
+                        <input type="text" id="nome" name="txtNome" class="form-control" placeholder="Nome completo"
+                          value="<?php echo $dados['nomeCliente']; ?>">
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="email">Endereço de e-mail</label>
-                        <input type="email" id="email" class="form-control" placeholder="Endereço de e-mail"
-                          value="ingrid.oliveira96@gmail.com">
+                        <input type="email" id="email" name="txtEmail" class="form-control" placeholder="Endereço de e-mail"
+                          value="<?php echo $dados['emailCliente']; ?>">
                       </div>
                     </div>
                   </div>
@@ -140,14 +149,13 @@
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="nome">Telefone</label>
-                        <input type="tel" id="nome" class="form-control" placeholder="Telefone" value="21952772488">
+                        <input type="text" id="nome" class="form-control" name="txtTelefone" placeholder="Telefone" value="<?php echo $dados['telCliente']; ?>">
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="label-control" for="input-address">Nascimento</label>
-                        <input type="text" class="form-control datetimepicker" placeholder="11/09/1996"
-                          showHours="false" />
+                        <input type="text" class="form-control datetimepicker" name="txtNascimento" value="<?php echo $dados['telCliente']; ?>" placeholder="99/99/9999" />
                       </div>
                     </div>
                   </div>

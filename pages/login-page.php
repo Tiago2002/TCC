@@ -27,38 +27,90 @@
 <body class="bg-light">
 
     <div class="container">
-        <div class="col-md-5 mx-auto">
+        <div class="col-md-4 mx-auto">
+            <div class="info p-5">
+                <div class="icon text-center">
+                    <img src="../assets/img/delas.png" class="img-thumbnail img-responsive" alt="Rounded Image">
+                </div>
+                <h6 class="text-center mt-2 mb-1"> Entrar </h6>
+                <p class="text-center text-black">Digite seu email e senha</p>
+            </div>
+            <?php
+            
+            if(isset($_GET["tipo"])){
+                if($_GET["tipo"] == 0 || $_GET["tipo"] ==1){
+                    if ($_GET["tipo"] == 0) {
+                        echo "<span class='mb-2 badge badge-pill badge-warning' data-container='body' data-toggle='popover' data-placement='top' data-content='Você será logado como Cliente'>Entrando como cliente</span>";
+                      } else {
+                        echo "<span class='mb-2 badge badge-pill badge-warning' data-container='body' data-toggle='popover' data-placement='top' data-content='Você será logado como Prestadora'>Entrando como Prestadora</span>";
+                      }
+                }
+                else{
+                    header("location: ../index.php");
+                }
+            }
+            else{
+                header("location: ../index.php");
+            }
+            
+            ?>
 
-            <h3 class='mb-5 mt-5 text-uppercase'>
-                Entre
-            </h3>
-
-            <form method="POST" action="../assets/php/login-cliente.php">
+            <form id="form-login" method="POST" action="../assets/php/login-cliente.php">
                 <div class="form-group">
                     <h6>Endereço de email</h6>
                     <div class="input-group">
-                        <input type="text" class="form-control" name="email" placeholder="Endereço de email">
+                        <input type="text" class="form-control" id="email" name="txtEmail"
+                            placeholder="Endereço de email">
+                    </div>
+                    <div class="alert alert-danger alerta-email mt-3" role="alert">
+                        <h6 class="mt-2">Insira um email válido</h6>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <h6>Senha</h6>
+                    <h6 class="float-left">Senha</h6>
+                    <small>
+                        <a href="#" class="badge badge-pill badge-info float-right">Esqueci minha senha</a>
+                    </small>
                     <div class="input-group">
-                        <input type="password" placeholder="Senha" name="password" class="form-control">
+                        <input type="password" placeholder="Senha" name="txtPassword" class="form-control">
                     </div>
                 </div>
-
-                <small>
-                    <a href="#" class="badge badge-pill badge-info" >Esqueci minha senha</a>
-                </small>
-
-                <div class="text-center">
-                    <button type="submit" name="logIn"
-                        class="btn btn-success btn-lg btn-block btn-round mt-3 mb-3">Entrar</button>
-                </div>
             </form>
+
+            <button class="btn btn-success btn-lg btn-block btn-round mt-3 mb-3" onclick="validarCamposLogin()">Entrar</button>
+
+
+            <h6>não tem conta ?</h6><a href="#" data-toggle="modal" data-target=".modal-cadastro"
+                class="text-info h6">Criar conta</a>
+
+
         </div>
+
     </div>
+    </div>
+
+    <div class="modal fade modal-cadastro" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Cadastrar-se</h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-footer">
+                    <div class="left-side">
+                        <a href="register-page.php?tipo=0" class="btn btn-primary btn-link">Para Trabalhar</a>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="right-side">
+                        <a href="register-page.php?tipo=1" class="btn btn-danger btn-link">Para solicitar
+                            serviço</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!--   Core JS Files   -->
@@ -75,6 +127,8 @@
     <!-- Control Center for Paper Kit: parallax effects, scripts for the example pages etc -->
     <script src="../assets/js/paper-kit.js?v=2.2.0" type="text/javascript"></script>
     <script src="https://kit.fontawesome.com/d70538755c.js" crossorigin="anonymous"></script>
+    <!-- scripts pessoais-->
+    <script src="../assets/js/estilo/validacaoInputs.js"></script>
 </body>
 
 </html>

@@ -1,6 +1,14 @@
 $(".alert").hide();
 
-function validarCampos() {
+function validarCamposLogin() {
+    var retornoEmail = ValidarEmail('email');
+
+    if (retornoEmail == true) {
+        document.getElementById("form-login").submit();
+    }
+}
+
+function validarCamposCadastro() {
     var retornoSenha =  validarSenha('senha1', 'senha2');
     var retornoEmail = ValidarEmail('email');
     var retornoNumero = validarNumero('numero')

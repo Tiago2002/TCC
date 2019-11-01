@@ -3,13 +3,14 @@ if (isset($_POST["txtName"]) || isset($_POST["txtTel"]) || isset($_POST["txtEmai
 
     include('conexao.php');
 
-    $name       = $conexao->real_escape_string($_POST["txtName"]);
+    $name       = strtoupper($conexao->real_escape_string($_POST["txtName"]));
     $tel        = $conexao->real_escape_string($_POST["txtTel"]);
-    $email      = $conexao->real_escape_string($_POST["txtEmail"]);
+    $email      = strtolower($conexao->real_escape_string($_POST["txtEmail"]));
     $password   = md5($conexao->real_escape_string($_POST["txtPassword"]));
 
-    
-    $data = $conexao->query("INSERT INTO Clientes (nomeCliente, telCliente, emailCliente, senhaCliente, dtCadastro) VALUES ('$name', '$tel', '$email', '$password', NOW())");
+    $sql = "INSERT INTO Clientes (nomeCliente, telCliente, emailCliente, senhaCliente, dtCadastro) VALUES ('$name', '$tel', '$email', '$password', NOW())";
+
+    $data = $conexao->query($sql);
     
     if ($data === false){
         echo "Connection error!";

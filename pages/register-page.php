@@ -52,7 +52,13 @@
          </button>
       </div>
       <hr>
-      <form class="mt-4" id="form-registro" method="POST" action="../assets/php/cadastrar-cliente.php">
+      <form class="mt-4" id="form-registro" method="POST" <?php
+            if ($tipo == 0) {
+               echo "action='../assets/php/cadastrar-prestadora.php'>";
+            } else {
+               echo "action='../assets/php/cadastrar-cliente.php'>";
+            }
+            ?>
          <div class="form-group mt-4">
             <h6>Nome (Obrigatório)</h6>
             <div class="input-group">
@@ -99,7 +105,7 @@
          </div>
          <div class="text-center">
             <button type="button" class="btn btn-success btn-lg btn-block btn-round mt-3 mb-3"
-               onclick="validarCampos()">Cadastre-se</button>
+               onclick="validarCamposCadastro()">Cadastre-se</button>
             <small>
             Ao clicar em “Cadastre-se”, você aceita os <a href="#" class="badge badge-pill badge-info"
                data-toggle="modal" data-target="#modalTermos">termos de

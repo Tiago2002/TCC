@@ -5,4 +5,4 @@
 			header("Location: ../pages/login-page.php");
 			exit();
 	}
-?>      
+?>

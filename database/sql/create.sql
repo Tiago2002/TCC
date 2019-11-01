@@ -15,7 +15,7 @@ create table Clientes (
     dtCadastro DATETIME NOT NULL,
     PRIMARY KEY (idCliente)
     );
-    
+
 /*Tabela de Bancos - conforme FEBRABAN*/
 create table Bancos (
 	idBanco INT(3) UNSIGNED NOT NULL,
@@ -32,9 +32,9 @@ create table Prestadoras (
     dtNascPrestadora DATE,
     emailPrestadora VARCHAR(100) NOT NULL,
     senhaPrestadora VARCHAR(50) NOT NULL,
-    idBanco INT(3) UNSIGNED NOT NULL,
-    agenciaBanco INT(5) UNSIGNED NOT NULL,
-    contaBanco VARCHAR(15) NOT NULL,
+    idBanco INT(3) UNSIGNED,
+    agenciaBanco INT(5) UNSIGNED,
+    contaBanco VARCHAR(15),
     ativo INT(1) UNSIGNED DEFAULT '1',
     dtCadastro DATETIME NOT NULL,
     PRIMARY KEY (idPrestadora),
