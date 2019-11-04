@@ -1,15 +1,15 @@
 <?php
-  require("../assets/php/logincheck.php");
+include_once("../assets/php/logincheck.php");
 
-    include("../assets/php/conexao.php");
+include_once("../assets/php/conexao.php");
 
-    $email = $_SESSION["email"];
+$email = $_SESSION["email"];
 
-    $sql = "SELECT nomeCliente, telCliente, dtNascCliente, emailCliente FROM Clientes WHERE emailCliente = '$email'";
+$sql = "SELECT nomeCliente, telCliente, dtNascCliente, emailCliente FROM Clientes WHERE emailCliente = '$email'";
 
-    $consulta = $conexao->query($sql);
+$consulta = $conexao->query($sql);
 
-    $dados = (mysqli_fetch_assoc($consulta));
+$dados = (mysqli_fetch_assoc($consulta));
 ?>
 
 <!DOCTYPE html>
@@ -80,8 +80,8 @@
     <div class="container mt-5">
 
       <div class="row">
-        <div class="col-xl-4 order-xl-2">
-          <div class="card">
+        <div class="col-md-4 order-xl-2">
+          <div class="card no-transition">
             <img src="../assets/img/faces/avatar.jpg" alt="Image placeholder" class="card-img-top">
             <div class="card-header pt-8 pt-md-4 pb-md-4">
               <div class="d-flex justify-content-between">
@@ -113,7 +113,7 @@
         </div>
 
         <div class="col-xl-8">
-          <div class="card">
+          <div class="card no-transition">
             <div class="card-header">
               <div class="row align-items-center">
                 <div class="col-8">
@@ -256,8 +256,9 @@
   <script src="../assets/js/plugins/bootstrap-datepicker.js" type="text/javascript"></script>
   <!-- Control Center for Paper Kit: parallax effects, scripts for the example pages etc -->
   <script src="../assets/js/paper-kit.js?v=2.2.0" type="text/javascript"></script>
-  
+  <!--scripts pessoais-->
   <script src="https://kit.fontawesome.com/d70538755c.js" crossorigin="anonymous"></script>
+  <script src="../assets/js/estilo/validacoes.js"></script>
 
   <script>
     $('.datetimepicker').datetimepicker({
@@ -273,72 +274,6 @@
         close: 'fa fa-remove'
       },
       format: 'L'
-    });
-  </script>
-
-  <script type="text/javascript">
-    $(document).ready(function () {
-
-      $(".alert").hide();
-
-      function limpa_formulário_cep() {
-        // Limpa valores do formulário de cep.
-        $("#rua").val("");
-        $("#bairro").val("");
-        $("#cidade").val("");
-        $("#estado").val("");
-      }
-
-      function temporizadorAlerta() {
-        setTimeout(function () {
-          $(".alert").fadeOut();
-        }, 4000);
-      }
-
-      $("#cep").blur(function () {
-        var cep = $(this).val().replace(/\D/g, '');
-
-        var validacep = /^[0-9]{8}$/;
-
-        if (cep != "") {
-          //Valida o formato do CEP.
-          if (validacep.test(cep)) {
-            //Preenche os campos com "..." enquanto consulta webservice.
-            $("#logradouro").val("...");
-            $("#bairro").val("...");
-            $("#cidade").val("...");
-            $("#estado").val("...");
-            //Consulta o webservice viacep.com.br/
-            $.getJSON("https://viacep.com.br/ws/" + cep + "/json/?callback=?", function (dados) {
-              if (!("erro" in dados)) {
-                $(".alerta-sucesso").fadeIn();
-                temporizadorAlerta()
-                $("#logradouro").val(dados.logradouro);
-                $("#bairro").val(dados.bairro);
-                $("#cidade").val(dados.localidade);
-                $("#estado").val(dados.uf);
-              } //end if.
-              else {
-                $("#msg-alerta-erro").text("CEP não foi encontrado.");
-                $(".alerta-erro").fadeIn();
-                temporizadorAlerta()
-              }
-            });
-          } //end if.
-          else {
-            //cep é inválido.
-            $("#msg-alerta-erro").text("Formato de CEP inválido.");
-            $(".alerta-erro").fadeIn();
-            temporizadorAlerta()
-          }
-        } //end if.
-        else {
-          //cep sem valor, limpa formulário.
-          $("#msg-alerta-erro").text("CEP sem Valor.");
-          $(".alerta-erro").fadeIn();
-          temporizadorAlerta()
-        }
-      });
     });
   </script>
 

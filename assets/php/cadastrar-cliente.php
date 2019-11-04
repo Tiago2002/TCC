@@ -1,28 +1,24 @@
 <?php
 if (isset($_POST["txtName"]) || isset($_POST["txtTel"]) || isset($_POST["txtEmail"]) || isset($_POST["txtPassword"])) {
-
-    include('conexao.php');
-
-    $name       = strtoupper($conexao->real_escape_string($_POST["txtName"]));
-    $tel        = $conexao->real_escape_string($_POST["txtTel"]);
-    $email      = strtolower($conexao->real_escape_string($_POST["txtEmail"]));
-    $password   = md5($conexao->real_escape_string($_POST["txtPassword"]));
-
-    $sql = "INSERT INTO Clientes (nomeCliente, telCliente, emailCliente, senhaCliente, dtCadastro) VALUES ('$name', '$tel', '$email', '$password', NOW())";
-
-    $data = $conexao->query($sql);
+    include_once('conexao.php');
     
-    if ($data === false){
-        echo "Connection error!";
-    }
-    else{
-        header("location: ../../pages/login-page.php");
-    }
+    $name     = strtoupper($conexao->real_escape_string($_POST["txtName"]));
+    $tel      = $conexao->real_escape_string($_POST["txtTel"]);
+    $email    = strtolower($conexao->real_escape_string($_POST["txtEmail"]));
+    $password = md5($conexao->real_escape_string($_POST["txtPassword"]));
+    $mascara  = array(" ", "-");
+    $telefone = str_replace($mascara, "", $tel);
+
+    $sql = "INSERT INTO Clientes (nomeCliente, telCliente, emailCliente, senhaCliente, dtCadastro) VALUES ('$name', '$telefone', '$email', '$password', NOW())";
+    
+    $data = $conexao->query($sql);
+
+    include_once("login-cliente.php");
 
     mysqli_close($conexao);
-        
-    } 
-    else{
+
+    } else {
         header("location: ../../index.php");
     }
+
 ?>

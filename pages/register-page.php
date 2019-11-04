@@ -3,7 +3,6 @@
    <head>
       <meta charset="utf-8" />
       <link rel="apple-touch-icon" sizes="76x76" href="../assets/img//apple-icon.png">
-      <link rel="icon" type="image/png" href="../assets/img//favicon.png">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
       <title>
          Delas - Registre-se
@@ -22,7 +21,7 @@
       <link href="../assets/css/paper-kit.css?v=2.2.0" rel="stylesheet" />
    </head>
 
-   <body class="bg-light ">
+ <body class="bg-light ">
 
    <div class="container">
       <div class="row">
@@ -71,22 +70,22 @@
                <div class="input-group-prepend">
                   <label class="input-group-text">+55</label>
                </div>
-               <input type="tel" class="form-control" maxlength="13" name="txtTel" id="numero"
+               <input type="tel" class="form-control" maxlength="13" name="txtTel" id="numeroRegistro"
                   OnKeyPress="formatar('## #####-####', this)" placeholder="Telefone" required>
             </div>
          </div>
-         <div class="alert alert-danger alerta-numero" role="alert">
-            <h6 class="mt-2">Insira um número válido</h6>
+         <div class="alert alert-danger alerta-tel" role="alert">
+            <h6 class="mt-2" id="msg-alerta-tel">Insira um número válido</h6>
          </div>
          <div class="form-group mt-4">
             <h6>Endereço de email (Obrigatório)</h6>
             <div class="input-group">
-               <input type="text" class="form-control" id="email" name="txtEmail" placeholder="Endereço de email"
+               <input type="text" class="form-control" id="emailRegistro" name="txtEmail" placeholder="Endereço de email"
                   required>
             </div>
          </div>
          <div class="alert alert-danger alerta-email" role="alert">
-            <h6 class="mt-2">Insira um email válido</h6>
+            <h6 class="mt-2" id="msg-alerta-email">Insira um email válido</h6>
          </div>
          <div class="form-row">
             <div class="form-group mt-4 col-md-6">
@@ -241,7 +240,6 @@
    <!-- Font Awesome -->
    <script src="https://kit.fontawesome.com/d70538755c.js" crossorigin="anonymous"></script>
    <!-- scripts pessoais -->
-   <script src="../assets/js/estilo/formatarInput.js"></script>
-   <script src="../assets/js/estilo/validacaoInputs.js"></script>
+   <script src="../assets/js/estilo/validacoes.js"></script>
    </body>
 </html>

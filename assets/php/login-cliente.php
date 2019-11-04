@@ -1,7 +1,8 @@
 <?php
-	session_start();
-
 	if (isset($_POST["txtEmail"]) || isset($_POST["txtPassword"])){
+
+		session_start();
+
 		include('conexao.php');
 		
 		$email = $conexao->real_escape_string($_POST["txtEmail"]);
@@ -13,7 +14,7 @@
 			$_SESSION["email"] = $email;
 			$_SESSION["loggedIn"] = 1;
 
-            header("Location: ../../pages/index.php");
+			header("Location: ../../pages/homepage.php");
 			exit();
 
 		} else {
@@ -21,8 +22,7 @@
 			exit();
 		}
 		mysqli_close($conexao);  	
-	}
-	else{
-		header("Location: ../../pages/login-page.php");
+	}else{
+		header("Location: ../../index.php");
 	}
 ?>

@@ -128,7 +128,7 @@
     <script src="../assets/js/paper-kit.js?v=2.2.0" type="text/javascript"></script>
     <script src="https://kit.fontawesome.com/d70538755c.js" crossorigin="anonymous"></script>
     <!-- scripts pessoais-->
-    <script src="../assets/js/estilo/validacaoInputs.js"></script>
+    <script src="../assets/js/estilo//validacoes.js"></script>
 </body>
 
 </html>

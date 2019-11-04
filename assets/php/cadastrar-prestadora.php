@@ -8,7 +8,11 @@ if (isset($_POST["txtName"]) || isset($_POST["txtTel"]) || isset($_POST["txtEmai
     $email      = $conexao->real_escape_string($_POST["txtEmail"]);
     $password   = md5($conexao->real_escape_string($_POST["txtPassword"]));
 
-    $data = $conexao->query("INSERT INTO Prestadoras (nomePrestadora, telPrestadora, emailPrestadora, senhaPrestadora, dtCadastro) VALUES ('$name', '$tel', '$email', '$password', NOW())");
+    $mascara = array(" ", "-");
+
+    $telefone = str_replace($mascara, "", $tel);
+
+    $data = $conexao->query("INSERT INTO Prestadoras (nomePrestadora, telPrestadora, emailPrestadora, senhaPrestadora, dtCadastro) VALUES ('$name', '$telefone', '$email', '$password', NOW())");
     
     if ($data === false){
         echo "Connection error!";

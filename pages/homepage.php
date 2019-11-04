@@ -1,24 +1,25 @@
 <?php
 
-    require_once("../assets/php/logincheck.php");
+include_once("../assets/php/logincheck.php");
 
-   function criarConteudoCardServico($id, $corTexto)
-   {
-      include("../assets/php/conexao.php");
+function criarConteudoCardServico($id, $corTexto)
+{
+    include("../assets/php/conexao.php");
 
-      $sql = "SELECT idEspecialidade, nomeEspecialidade FROM Especialidades WHERE idArea = $id";
+    $sql = "SELECT idEspecialidade, nomeEspecialidade FROM Especialidades WHERE idArea = $id";
 
-      $consulta = $conexao->query($sql);
-      
-      //pecorrendo os registros da consulta. 
-      while ($dados = mysqli_fetch_assoc($consulta)) {
+    $consulta = $conexao->query($sql);
+    
+    //pecorrendo os registros da consulta. 
+    while ($dados = mysqli_fetch_assoc($consulta)) {
 
-      echo "<a href='#' class='btn m-2 btn-outline-". $corTexto . "btn-round' data-toggle='modal'
-      data-target='.bd-example-modal-sm'>" . utf8_encode($dados['nomeEspecialidade']) . "</a>";
-          
-      }
-   }
-   ?>
+    echo "<a href='#' class='btn m-2 btn-outline-". $corTexto . "btn-round' data-toggle='modal'
+    data-target='.bd-example-modal-sm'>" . utf8_encode($dados['nomeEspecialidade']) . "</a>";
+        
+    }
+}
+
+?>
 <!doctype html>
 <html lang="pt-br">
 
