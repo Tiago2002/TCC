@@ -1,14 +1,13 @@
+var emailExiste = false;
+var telExiste = false;
+var tel = $("#numeroRegistro");
+var email = $("#emailRegistro");
+var senhaLogin = $("#senhaLogin");
+var emailLogin = $("#emailLogin");
+
 $(".alert").hide();
 
 // verificar se os validadores e verificações estão corretas
-
-function validarCamposLogin() {
-    var retornoEmail = ValidarEmail('email');
-
-    if (retornoEmail == true) {
-        document.getElementById("form-login").submit();
-    }
-}
 
 function validarCamposCadastro() {
     var retornoSenha = validarSenha('senha1', 'senha2');
@@ -72,12 +71,6 @@ function validarNumero(idNumero) {
     }
 }
 
-// Vverificações de dados existentes
-
-var emailExiste = false;
-var telExiste = false;
-
-var email = $("#emailRegistro");
 email.change(function verificarEmailExistente() {
     $.ajax({
         url: '../assets/php/verificarDados.php',
@@ -92,7 +85,6 @@ email.change(function verificarEmailExistente() {
     });
 });
 
-var tel = $("#numeroRegistro");
 tel.change(function verificarTelefoneExistente() {
     $.ajax({
         url: '../assets/php/verificarDados.php',
@@ -106,6 +98,31 @@ tel.change(function verificarTelefoneExistente() {
         }
     });
 });
+
+$("#btn-login").click(function verificarLogin() {
+    $.ajax({
+        url: '../assets/php/verificarDados.php',
+        type: 'POST',
+        data: {
+            "emailLogin": emailLogin.val(), 
+            "senhaLogin": senhaLogin.val()
+         },
+        success: function(data) {
+            var verifica = JSON.parse(data);
+            loginIncorreto(verifica.dados);
+        }
+    });
+});
+
+function loginIncorreto(verificador) {
+    if(verificador == true){
+        document.getElementById("form-login").submit();
+    }
+    else if(verificador == false){
+        $(".alerta-login").fadeIn();
+        temporizadorAlerta();
+    }
+}
 
 function emailExistente(verificadorEmail) {
     if (verificadorEmail == true) {

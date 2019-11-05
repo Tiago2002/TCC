@@ -5,7 +5,6 @@
 <head>
     <meta charset="utf-8" />
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img//apple-icon.png">
-    <link rel="icon" type="image/png" href="../assets/img//favicon.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>
         Delas - Entrar
@@ -40,9 +39,9 @@
             if(isset($_GET["tipo"])){
                 if($_GET["tipo"] == 0 || $_GET["tipo"] ==1){
                     if ($_GET["tipo"] == 0) {
-                        echo "<span class='mb-2 badge badge-pill badge-warning' data-container='body' data-toggle='popover' data-placement='top' data-content='Você será logado como Cliente'>Entrando como cliente</span>";
-                      } else {
                         echo "<span class='mb-2 badge badge-pill badge-warning' data-container='body' data-toggle='popover' data-placement='top' data-content='Você será logado como Prestadora'>Entrando como Prestadora</span>";
+                      } else {
+                        echo "<span class='mb-2 badge badge-pill badge-warning' data-container='body' data-toggle='popover' data-placement='top' data-content='Você será logado como Cliente'>Entrando como cliente</span>";
                       }
                 }
                 else{
@@ -59,7 +58,7 @@
                 <div class="form-group">
                     <h6>Endereço de email</h6>
                     <div class="input-group">
-                        <input type="text" class="form-control" id="email" name="txtEmail"
+                        <input type="text" class="form-control" id="emailLogin" name="txtEmail"
                             placeholder="Endereço de email">
                     </div>
                     <div class="alert alert-danger alerta-email mt-3" role="alert">
@@ -73,18 +72,18 @@
                         <a href="#" class="badge badge-pill badge-info float-right">Esqueci minha senha</a>
                     </small>
                     <div class="input-group">
-                        <input type="password" placeholder="Senha" name="txtPassword" class="form-control">
+                        <input type="password" placeholder="Senha" id="senhaLogin" name="txtPassword" class="form-control">
                     </div>
+                </div>
+                <div class="alert alert-danger alerta-login" role="alert">
+                    <h6 class="mt-2">Email ou Senha incorretos</h6>
                 </div>
             </form>
 
-            <button class="btn btn-success btn-lg btn-block btn-round mt-3 mb-3" onclick="validarCamposLogin()">Entrar</button>
-
+            <button class="btn btn-success btn-lg btn-block btn-round mt-3 mb-3" id="btn-login" >Entrar</button>
 
             <h6>não tem conta ?</h6><a href="#" data-toggle="modal" data-target=".modal-cadastro"
                 class="text-info h6">Criar conta</a>
-
-
         </div>
 
     </div>

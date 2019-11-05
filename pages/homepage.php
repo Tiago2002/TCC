@@ -1,5 +1,4 @@
 <?php
-
 include_once("../assets/php/logincheck.php");
 
 function criarConteudoCardServico($id, $corTexto)
