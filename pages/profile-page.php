@@ -1,7 +1,7 @@
 <?php
-include_once("../assets/php/logincheck.php");
+include_once("../assets/php/scripts/logincheck.php");
 
-include_once("../assets/php/conexao.php");
+include_once("../assets/php/scripts/conexao.php");
 
 $email = $_SESSION["email"];
 
@@ -64,7 +64,7 @@ $dados = (mysqli_fetch_assoc($consulta));
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../assets/php/logout.php">
+                    <a class="nav-link" href="../assets/php/scripts/logout.php">
                         <i class="fas fa-sign-out-alt"></i>
                         <p>Sair</p>
                     </a>

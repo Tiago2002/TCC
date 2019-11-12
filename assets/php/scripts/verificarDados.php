@@ -46,4 +46,28 @@ if(isset($_POST['emailLogin']) || isset($_POST['senhaLogin'])){
         echo utf8_encode(json_encode(array('dados' => false )));
     }
 }
+
+if(isset($_POST['emailRecuperacao']) || isset($_POST['numeroRecuperacao']) || isset($_POST['cpfRecuperacao']) || isset($_POST['dataRecuperacao'])){
+    
+    include("conexao.php");
+
+    $email = $_POST["emailRecuperacao"];
+    $numero = $_POST["numeroRecuperacao"];
+    $cpf = $_POST["cpfRecuperacao"];
+    $data = $_POST["dataRecuperacao"];
+
+    $mascara = array(" ", "-");
+    $telefone = str_replace($mascara, "", $numero);
+
+    $consultaTelefone = $conexao->query("SELECT * FROM Clientes WHERE emailCliente = '$email' AND telCliente = '$telefone'");
+    $dados = mysqli_fetch_assoc($consultaTelefone);
+
+    if(mysqli_fetch_row($consultaTelefone)){
+        echo utf8_encode(json_encode(array('dados' => $dados )));
+    }
+    else{
+        echo utf8_encode(json_encode(array('dados' => $dados )));
+    }
+}
+
 ?>

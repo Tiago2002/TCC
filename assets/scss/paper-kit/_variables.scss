@@ -41,8 +41,8 @@ $default-states-color:       #403D39 !default;
 $primary-color:              #51cbce !default;
 $primary-states-color:       darken($primary-color, 10%) !default;
 
-$success-color:              #6bd098 !default;
-$success-states-color:       darken($success-color, 10%) !default;
+$success-color:              #08db88 !default;
+$success-states-color:       darken($success-color, 3%) !default;
 
 $info-color:                 #51bcda !default;
 $info-states-color:          darken($info-color, 10%) !default;
@@ -202,7 +202,6 @@ $border-radius-icon:		     15px !default;
 $size-icon: 					 64px;
 $size-icon-sm: 					 32px;
 
-
 $height-icon-sm:				 32px;
 $width-icon-sm:					 32px;
 $padding-icon-sm:			     4px;
@@ -213,8 +212,6 @@ $width-icon-message:			 40px;
 
 $height-icon-message-sm: 		 20px;
 $width-icon-message-sm:			 20px;
-
-
 
 $white-navbar:              rgba(#FFFFFF, .96);
 $blue-navbar:               rgba(#34ACDC, .98);

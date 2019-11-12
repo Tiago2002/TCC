@@ -121,5 +121,12 @@ create table Servicos (
     FOREIGN KEY (idStatus) REFERENCES TbStatus (idStatus),
     FOREIGN KEY (idPrestadora) REFERENCES Prestadoras (idPrestadora)
     );
+    
+	create table Recuperacao(
+		idRecuperacao int primary key auto_increment,
+		codigo text,
+		idCliente INT(5) UNSIGNED NOT NULL,
+		FOREIGN KEY (idCliente) REFERENCES Clientes (idCliente)
+	);
 
 /*drop database dbProjetoTCC;*/

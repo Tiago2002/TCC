@@ -1,5 +1,5 @@
 <?php
-	require ("../assets/php/logincheck.php");
+	include_once("../assets/php/scripts/logincheck.php");
 ?>
 
 <!doctype html>
@@ -60,7 +60,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../assets/php/logout.php">
+                        <a class="nav-link" href="../assets/php/scripts/logout.php">
                             <i class="fas fa-sign-out-alt"></i>
                             <p>Sair</p>
                         </a>

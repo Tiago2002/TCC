@@ -7,6 +7,50 @@ var emailLogin = $("#emailLogin");
 
 $(".alert").hide();
 
+//redefinição de senha
+var emailRecuperacao = $('#emailRecuperacao');
+var animacaoCarregando = $('.circle-loading');
+animacaoCarregando.hide();
+emailRecuperacao.change(function(){
+    ValidarEmail('emailRecuperacao');
+});
+
+$("#btn-recuperacao").click(function(){
+    $.ajax({
+        url: '../assets/php/scripts/redefinirSenha.php',
+        type: 'POST',
+        data: {
+            "email": emailRecuperacao.val(),
+        },
+        beforeSend: function(){
+            animacaoCarregando.fadeIn();
+        },
+        success: function(retorno) {
+            animacaoCarregando.hide();
+            var dados = JSON.parse(retorno);
+            if(dados.envio !== undefined){
+                verificarRecuperacao(dados.envio);
+            }
+            else if(dados.emailExiste !== undefined){
+                $('.alerta-reset').fadeIn();
+                $('#msg-alerta-reset').text('Email não está cadastradado');
+                temporizadorAlerta();
+            }
+        }
+    });
+});
+
+function verificarRecuperacao(verificador){
+    if(verificador == true){
+        $('.alerta-enviado').fadeIn();
+        temporizadorAlerta();
+    }else{
+        $('.alerta-reset').fadeIn();
+        $('#msg-alerta-reset').text('Ocorreu um erro, tente novamente');
+        temporizadorAlerta();
+    }
+}
+
 // verificar se os validadores e verificações estão corretas
 
 function validarCamposCadastro() {
@@ -30,14 +74,23 @@ function validarSenha(campoUm, campoDois) {
     var senhaDois = document.getElementById(campoDois).value;
 
     if (!senhaUm == "" || !senhaDois == "") {
-        if (senhaUm != senhaDois) {
+        if (!senhaUm != senhaDois) {
+            if(senhaUm.length < 8 || senhaDois.length < 8){
+                $(".alerta-senha").fadeIn();
+                $("#msg-alerta-senha").text("Mínimo de 8 caracteres");
+                temporizadorAlerta();
+            }
+            else{
+                return true;
+            }
+        } 
+        else {
             $(".alerta-senha").fadeIn();
             $("#msg-alerta-senha").text("Senhas Diferentes");
             temporizadorAlerta();
-        } else {
-            return true;
         }
-    } else {
+    } 
+    else {
         $(".alerta-senha").fadeIn();
         $("#msg-alerta-senha").text("Insira uma senha");
         temporizadorAlerta();
@@ -66,14 +119,14 @@ function validarNumero(idNumero) {
     if (mascaraNumero.test(numero)) {
         return true;
     } else {
-        $(".alerta-numero").fadeIn();
+        $(".alerta-tel").fadeIn();
         temporizadorAlerta();
     }
 }
 
 email.change(function verificarEmailExistente() {
     $.ajax({
-        url: '../assets/php/verificarDados.php',
+        url: '../assets/php/scripts/verificarDados.php',
         type: 'POST',
         data: {
             "email": email.val()
@@ -87,7 +140,7 @@ email.change(function verificarEmailExistente() {
 
 tel.change(function verificarTelefoneExistente() {
     $.ajax({
-        url: '../assets/php/verificarDados.php',
+        url: '../assets/php/scripts/verificarDados.php',
         type: 'POST',
         data: {
             "numero": tel.val()
@@ -101,7 +154,7 @@ tel.change(function verificarTelefoneExistente() {
 
 $("#btn-login").click(function verificarLogin() {
     $.ajax({
-        url: '../assets/php/verificarDados.php',
+        url: '../assets/php/scripts/verificarDados.php',
         type: 'POST',
         data: {
             "emailLogin": emailLogin.val(), 

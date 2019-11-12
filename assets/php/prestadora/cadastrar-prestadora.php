@@ -1,7 +1,7 @@
 <?php
 if (isset($_POST["txtName"]) || isset($_POST["txtTel"]) || isset($_POST["txtEmail"]) || isset($_POST["txtPassword"])) {
 
-    include('conexao.php');
+    include('../scripts/conexao.php');
 
     $name       = $conexao->real_escape_string($_POST["txtName"]);
     $tel        = $conexao->real_escape_string($_POST["txtTel"]);
@@ -18,13 +18,13 @@ if (isset($_POST["txtName"]) || isset($_POST["txtTel"]) || isset($_POST["txtEmai
         echo "Connection error!";
     }
     else{
-        header("location: ../../pages/login-page.php");
+        header("location: ../../../pages/login-page.php");
     }
 
     mysqli_close($conexao);
         
     } 
     else{
-        header("location: ../../index.php");
+        header("location: ../../../index.php");
     }
 ?>

@@ -21,21 +21,25 @@
     <!-- CSS Files -->
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
     <link href="../assets/css/paper-kit.css?v=2.2.0" rel="stylesheet" />
+    <link href="../assets/css/estilo.css" rel="stylesheet" />
 </head>
 
-<body class="bg-light">
+<body>
+
+    <nav class="navbar navbar-expand-lg bg-transparent mb-5">
+        <a href="../index.php" class="btn btn-success btn-round texto-preto ml-2"><i
+                class="fas fa-arrow-left mr-2"></i>Voltar</a>
+    </nav>
 
     <div class="container">
         <div class="col-md-4 mx-auto">
-            <div class="info p-5">
-                <div class="icon text-center">
-                    <img src="../assets/img/delas.png" class="img-thumbnail img-responsive" alt="Rounded Image">
-                </div>
-                <h6 class="text-center mt-2 mb-1"> Entrar </h6>
-                <p class="text-center text-black">Digite seu email e senha</p>
+
+            <div class="text-center mt-5 mb-5">
+                <h3 class="texto-preto font-weight-bold">
+                    Entre com sua conta da D'elas.
+                </h3>
             </div>
             <?php
-            
             if(isset($_GET["tipo"])){
                 if($_GET["tipo"] == 0 || $_GET["tipo"] ==1){
                     if ($_GET["tipo"] == 0) {
@@ -54,11 +58,11 @@
             
             ?>
 
-            <form id="form-login" method="POST" action="../assets/php/login-cliente.php">
+            <form id="form-login" method="POST" action="../assets/php/cliente/login-cliente.php">
                 <div class="form-group">
-                    <h6>Endereço de email</h6>
+                    <h6 class="texto-preto">Endereço de email</h6>
                     <div class="input-group">
-                        <input type="text" class="form-control" id="emailLogin" name="txtEmail"
+                        <input type="text" class="form-control border" id="emailLogin" name="txtEmail"
                             placeholder="Endereço de email">
                     </div>
                     <div class="alert alert-danger alerta-email mt-3" role="alert">
@@ -67,23 +71,27 @@
                 </div>
 
                 <div class="form-group">
-                    <h6 class="float-left">Senha</h6>
-                    <small>
-                        <a href="#" class="badge badge-pill badge-info float-right">Esqueci minha senha</a>
-                    </small>
+                    <h6 class="texto-preto">Senha</h6>
                     <div class="input-group">
-                        <input type="password" placeholder="Senha" id="senhaLogin" name="txtPassword" class="form-control">
+                        <input type="password" placeholder="Senha" id="senhaLogin" name="txtPassword"
+                            class="form-control border">
                     </div>
                 </div>
                 <div class="alert alert-danger alerta-login" role="alert">
                     <h6 class="mt-2">Email ou Senha incorretos</h6>
                 </div>
             </form>
+            <small>
+                <a href="" data-toggle="modal" data-target=".modal-recuperacao"
+                    class="btn btn-warning texto-preto h6">Esqueci minha senha</a>
+            </small>
 
-            <button class="btn btn-success btn-lg btn-block btn-round mt-3 mb-3" id="btn-login" >Entrar</button>
+            <button class="btn btn-success btn-lg btn-block btn-round texto-preto mt-2 mb-3" id="btn-login">
+                Entrar
+            </button>
 
-            <h6>não tem conta ?</h6><a href="#" data-toggle="modal" data-target=".modal-cadastro"
-                class="text-info h6">Criar conta</a>
+            <h6 class="texto-preto">não tem conta ?</h6><a href="#" data-toggle="modal" data-target=".modal-cadastro"
+                class="text-success h6">Criar conta</a>
         </div>
 
     </div>
@@ -93,19 +101,41 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2>Cadastrar-se</h2>
+                    <h2 class="texto-preto font-weight-bold">Cadastrar-se</h2>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-footer">
                     <div class="left-side">
-                        <a href="register-page.php?tipo=0" class="btn btn-primary btn-link">Para Trabalhar</a>
+                        <a href="register-page.php?tipo=0" class="btn btn-success btn-link">Para Trabalhar</a>
                     </div>
                     <div class="divider"></div>
                     <div class="right-side">
-                        <a href="register-page.php?tipo=1" class="btn btn-danger btn-link">Para solicitar
+                        <a href="register-page.php?tipo=1" class="btn btn-success btn-link">Para solicitar
                             serviço</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade modal-recuperacao" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="texto-preto font-weight-bold">Recuperar Senha</h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-footer">
+                    <div class="left-side">
+                        <a href="recuperar-senha.php?tipo=0" class="btn btn-success btn-link">Sou Trabalhadora</a>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="right-side">
+                        <a href="recuperar-senha.php?tipo=1" class="btn btn-success btn-link">Sou Cliente</a>
                     </div>
                 </div>
             </div>

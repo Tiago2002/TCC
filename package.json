@@ -5,13 +5,14 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "scss":  "sass --watch assets/scss:assets/css"
+    "scss": "sass --watch assets/scss:assets/css"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "bootstrap": "^4.3.1",
     "jquery": "^3.4.1",
-    "popper.js": "^1.15.0"
+    "popper.js": "^1.15.0",
+    "sass": "^1.23.3"
   }
 }

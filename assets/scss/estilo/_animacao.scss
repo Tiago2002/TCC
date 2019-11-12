@@ -1,0 +1,19 @@
+.circle-loading {
+    width: 50px;
+    height: 50px;
+    border: solid 5px rgba(255, 255, 255, 0.2);
+    border-top-color: #FFF;
+    border-radius: 100px;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    -ms-border-radius: 100px;
+    -o-border-radius: 100px;
+    animation: spin 1s infinite linear;
+    -webkit-animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}

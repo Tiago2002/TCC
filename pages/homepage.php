@@ -1,9 +1,9 @@
 <?php
-include_once("../assets/php/logincheck.php");
+include_once("../assets/php/scripts/logincheck.php");
 
 function criarConteudoCardServico($id, $corTexto)
 {
-    include("../assets/php/conexao.php");
+    include("../assets/php/scripts/conexao.php");
 
     $sql = "SELECT idEspecialidade, nomeEspecialidade FROM Especialidades WHERE idArea = $id";
 
@@ -71,7 +71,7 @@ function criarConteudoCardServico($id, $corTexto)
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../assets/php/logout.php">
+                        <a class="nav-link" href="../assets/php/scripts/logout.php">
                             <i class="fas fa-sign-out-alt"></i>
                             <p>Sair</p>
                         </a>
@@ -86,7 +86,7 @@ function criarConteudoCardServico($id, $corTexto)
     <div class="content-center">
       <div class="container">
         <div class="title-brand">
-          <h1 class="title text-uppercase font-weight-bold">Peça uma prossional</h1>
+          <h1 class="title text-uppercase font-weight-bold">Peça uma profissional</h1>
         </div>
         <h2 class="text-center mb-5">Escolha uma área de atuação e um tipo de serviço.</h2>
       </div>
