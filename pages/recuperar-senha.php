@@ -24,10 +24,15 @@
     <link href="../assets/css/estilo.css" rel="stylesheet" />
 </head>
 
-<body class="bg-light">
+<body>
 
-    <div class="container bg-dark p-5 mt-5">
-        <h1 class="text-uppercase text-center text-white font-weight-bold">Alterar Senha</h1>
+<nav class="navbar navbar-expand-lg bg-dark">
+        <a onclick="window.history.back()" class="btn btn-success btn-round texto-preto ml-2"><i
+                class="fas fa-arrow-left mr-2"></i>Voltar</a>
+    </nav>
+
+    <div class="container p-5 mt-5">
+        <h1 class="text-uppercase text-center texto-preto font-weight-bold">Alterar Senha</h1>
 
         <div class="col-md-6 mt-3 mx-auto">
 
@@ -66,20 +71,19 @@
                 header("location: ../index.php");
             }
             ?>>
-                <h6 class="text-white">Confirme o email cadastrado</h6>
+                <h6>Confirme o email cadastrado</h6>
                 <div class="form-group">
-                    <small class="text-white">Email</small>
                     <div class="input-group">
-                        <input type="text" class="form-control" id="emailRecuperacao" name="txtEmail"
+                        <input type="text" class="form-control border" id="emailRecuperacao" name="txtEmail"
                             placeholder="Insira o email cadastrado" required>
                     </div>
-                    <div class="alert alert-danger alerta-email mt-3" role="alert">
+                    <div class="alert alert-danger texto-preto alerta-email mt-3" role="alert">
                         <h6 class="mt-2">Insira um email válido</h6>
                     </div>
-                    <div class="alert alert-danger alerta-reset mt-3" role="alert">
+                    <div class="alert alert-danger texto-preto alerta-reset mt-3" role="alert">
                         <h6 class="mt-2" id="msg-alerta-reset">Email não está cadastradado</h6>
                     </div>
-                    <div class="alert alert-success alerta-enviado mt-3" role="alert">
+                    <div class="alert alert-success texto-preto alerta-enviado mt-3" role="alert">
                         <h6 class="mt-2">Verifique seu email para redefinir sua senha</h6>
                     </div>
                 </div>
@@ -87,8 +91,13 @@
 
             <div class="circle-loading container mb-3"></div>
 
-            <button class="btn btn-outline-warning btn-lg btn-block btn-round mt-3 mb-3" id="btn-recuperacao">Redefinir
-                Senha</button>
+            <button class="btn btn-success btn-lg btn-block btn-round texto-preto mt-3 mb-3"<?php
+                if ($_GET["tipo"] == 0) {
+                    echo "id='btn-recuperacaoPrestadora'";
+                } else {
+                    echo "id='btn-recuperacaoCliente'";
+                }
+            ?>>Redefinir Senha</button>
         </div>
 
     </div>
@@ -109,6 +118,7 @@
     <script src="https://kit.fontawesome.com/d70538755c.js" crossorigin="anonymous"></script>
     <!-- scripts pessoais-->
     <script src="../assets/js/estilo/validacoes.js"></script>
+    <script src="../assets/js/estilo/recuperacao.js"></script>
 </body>
 
 </html>

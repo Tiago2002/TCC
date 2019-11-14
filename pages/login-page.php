@@ -26,7 +26,7 @@
 
 <body>
 
-    <nav class="navbar navbar-expand-lg bg-transparent mb-5">
+    <nav class="navbar navbar-expand-lg bg-dark mb-5">
         <a href="../index.php" class="btn btn-success btn-round texto-preto ml-2"><i
                 class="fas fa-arrow-left mr-2"></i>Voltar</a>
     </nav>
@@ -58,12 +58,23 @@
             
             ?>
 
-            <form id="form-login" method="POST" action="../assets/php/cliente/login-cliente.php">
+            <form id="form-login" method="POST" <?php
+                if ($_GET["tipo"] == 0) {
+                    echo "action='../assets/php/prestadora/login-prestadora.php'";
+                  } else {
+                    echo "action='../assets/php/cliente/login-cliente.php'";
+                  }
+            ?>>
                 <div class="form-group">
                     <h6 class="texto-preto">Endereço de email</h6>
                     <div class="input-group">
-                        <input type="text" class="form-control border" id="emailLogin" name="txtEmail"
-                            placeholder="Endereço de email">
+                        <input type="text" class="form-control border"<?php
+                        if ($_GET["tipo"] == 0) {
+                            echo "id='emailLoginPrestadora'";
+                        }else{
+                            echo "id='emailLoginCliente'";
+                        }
+                        ?> name="txtEmail" placeholder="Endereço de email">
                     </div>
                     <div class="alert alert-danger alerta-email mt-3" role="alert">
                         <h6 class="mt-2">Insira um email válido</h6>
@@ -73,7 +84,13 @@
                 <div class="form-group">
                     <h6 class="texto-preto">Senha</h6>
                     <div class="input-group">
-                        <input type="password" placeholder="Senha" id="senhaLogin" name="txtPassword"
+                        <input type="password" placeholder="Senha" <?php
+                        if ($_GET["tipo"] == 0) {
+                            echo "id='senhaLoginPrestadora'";
+                        }else{
+                            echo "id='senhaLoginCliente'";
+                        }
+                        ?> name="txtPassword"
                             class="form-control border">
                     </div>
                 </div>
@@ -86,7 +103,13 @@
                     class="btn btn-warning texto-preto h6">Esqueci minha senha</a>
             </small>
 
-            <button class="btn btn-success btn-lg btn-block btn-round texto-preto mt-2 mb-3" id="btn-login">
+            <button class="btn btn-success btn-lg btn-block btn-round texto-preto mt-2 mb-3" <?php
+                if ($_GET["tipo"] == 0){
+                    echo "id='btn-loginPrestadora'";
+                }else{
+                    echo "id='btn-loginCliente'";
+                }
+            ?>>
                 Entrar
             </button>
 
@@ -157,7 +180,8 @@
     <script src="../assets/js/paper-kit.js?v=2.2.0" type="text/javascript"></script>
     <script src="https://kit.fontawesome.com/d70538755c.js" crossorigin="anonymous"></script>
     <!-- scripts pessoais-->
-    <script src="../assets/js/estilo//validacoes.js"></script>
+    <script src="../assets/js/estilo/validacoes.js"></script>
+    <script src="../assets/js/estilo/login.js"></script>
 </body>
 
 </html>

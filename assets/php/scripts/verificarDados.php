@@ -1,8 +1,10 @@
 <?php
-if(isset($_POST['email'])){
+
+// Verificacoes de dados existente Cliente
+if(isset($_POST['emailCliente'])){
     include("conexao.php");
     
-    $email= $_POST["email"];
+    $email= $_POST["emailCliente"];
 
     $consultaEmail = $conexao->query("SELECT emailCliente FROM Clientes WHERE emailCliente = '$email'");
 
@@ -14,10 +16,10 @@ if(isset($_POST['email'])){
     }
 }
 
-if(isset($_POST['numero'])){
+if(isset($_POST['telCliente'])){
     include("conexao.php");
 
-    $tel = $conexao->real_escape_string($_POST["numero"]);
+    $tel = $conexao->real_escape_string($_POST["telCliente"]);
     $mascara = array(" ", "-");
     $telefone = str_replace($mascara, "", $tel);
 
@@ -31,13 +33,14 @@ if(isset($_POST['numero'])){
     }
 }
 
-if(isset($_POST['emailLogin']) || isset($_POST['senhaLogin'])){
+// Login Cliente
+if(isset($_POST['emailLoginCliente']) || isset($_POST['senhaLoginCliente'])){
     include("conexao.php");
 
-    $email = $_POST["emailLogin"];
-    $senha = $_POST["senhaLogin"];
+    $email = $_POST["emailLoginCliente"];
+    $senha = md5($_POST["senhaLoginCliente"]);
 
-    $consultaTelefone = $conexao->query("SELECT emailCliente FROM Clientes WHERE emailCliente = '$email' AND senhaCliente = MD5('$senha')");
+    $consultaTelefone = $conexao->query("SELECT emailCliente FROM Clientes WHERE emailCliente = '$email' AND senhaCliente = '$senha'");
 
     if(mysqli_fetch_row($consultaTelefone)){
         echo utf8_encode(json_encode(array('dados' => true)));
@@ -47,26 +50,53 @@ if(isset($_POST['emailLogin']) || isset($_POST['senhaLogin'])){
     }
 }
 
-if(isset($_POST['emailRecuperacao']) || isset($_POST['numeroRecuperacao']) || isset($_POST['cpfRecuperacao']) || isset($_POST['dataRecuperacao'])){
-    
+// Verificacoes de dados existente Prestadora
+if(isset($_POST['emailPrestadora'])){
     include("conexao.php");
+    
+    $email= $_POST["emailPrestadora"];
 
-    $email = $_POST["emailRecuperacao"];
-    $numero = $_POST["numeroRecuperacao"];
-    $cpf = $_POST["cpfRecuperacao"];
-    $data = $_POST["dataRecuperacao"];
+    $consultaEmail = $conexao->query("SELECT emailPrestadora FROM Prestadoras WHERE emailPrestadora = '$email'");
 
-    $mascara = array(" ", "-");
-    $telefone = str_replace($mascara, "", $numero);
-
-    $consultaTelefone = $conexao->query("SELECT * FROM Clientes WHERE emailCliente = '$email' AND telCliente = '$telefone'");
-    $dados = mysqli_fetch_assoc($consultaTelefone);
-
-    if(mysqli_fetch_row($consultaTelefone)){
-        echo utf8_encode(json_encode(array('dados' => $dados )));
+    if(mysqli_fetch_row($consultaEmail)){
+        echo utf8_encode(json_encode(array('email' => true))); 
     }
     else{
-        echo utf8_encode(json_encode(array('dados' => $dados )));
+        echo utf8_encode(json_encode(array('email' => false )));
+    }
+}
+
+if(isset($_POST['telPrestadora'])){
+    include("conexao.php");
+
+    $tel = $conexao->real_escape_string($_POST["telPrestadora"]);
+    $mascara = array(" ", "-");
+    $telefone = str_replace($mascara, "", $tel);
+
+    $consultaTelefone = $conexao->query("SELECT telPrestadora FROM Prestadoras WHERE telPrestadora = '$telefone'");
+
+    if(mysqli_fetch_row($consultaTelefone)){
+        echo utf8_encode(json_encode(array('telefone' => true))); 
+    }
+    else{
+        echo utf8_encode(json_encode(array('telefone' => false )));
+    }
+}
+
+// Login prestadora
+if(isset($_POST['emailLoginPrestadora']) || isset($_POST['senhaLoginPrestadora'])){
+    include("conexao.php");
+
+    $email = $_POST["emailLoginPrestadora"];
+    $senha = md5($_POST["senhaLoginPrestadora"]);
+
+    $consultaTelefone = $conexao->query("SELECT nomePrestadora FROM Prestadoras WHERE emailPrestadora = '$email' AND senhaPrestadora = '$senha'");
+
+    if(mysqli_fetch_row($consultaTelefone)){
+        echo utf8_encode(json_encode(array('dados' => true)));
+    }
+    else{
+        echo utf8_encode(json_encode(array('dados' => false )));
     }
 }
 

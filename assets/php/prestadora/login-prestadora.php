@@ -7,12 +7,12 @@ if (isset($_POST["txtEmail"]) || isset($_POST["txtPassword"])){
 		$email = $conexao->real_escape_string($_POST["txtEmail"]);
 		$password = md5($conexao->real_escape_string($_POST["txtPassword"]));
 
-		$data = $conexao->query("SELECT nomeCliente FROM Clientes WHERE emailCliente='$email' AND senhaCliente='$password'");
+		$data = $conexao->query("SELECT nomePrestadora FROM Prestadoras WHERE emailPrestadora='$email' AND senhaPrestadora='$password'");
 
 		if(mysqli_fetch_row($data)){
 			$_SESSION["email"] = $email;
 			$_SESSION["loggedIn"] = 1;
-			header("Location: ../../../pages/cliente/homepage.php");
+			header("Location: ../../../pages/prestadora/homepage.php");
 			exit();
 		}
 		else{

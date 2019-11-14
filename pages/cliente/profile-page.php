@@ -1,7 +1,7 @@
 <?php
-include_once("../assets/php/scripts/logincheck.php");
+include_once("../../assets/php/scripts/logincheck.php");
 
-include_once("../assets/php/scripts/conexao.php");
+include_once("../../assets/php/scripts/conexao.php");
 
 $email = $_SESSION["email"];
 
@@ -25,8 +25,8 @@ $dados = (mysqli_fetch_assoc($consulta));
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
   <!-- CSS Files -->
-  <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="../assets/css/paper-kit.css?v=2.2.0" rel="stylesheet" />
+  <link href="../../assets/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="../../assets/css/paper-kit.css?v=2.2.0" rel="stylesheet" />
 </head>
 
 <body class="profile-page sidebar-collapse">
@@ -64,7 +64,7 @@ $dados = (mysqli_fetch_assoc($consulta));
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../assets/php/scripts/logout.php">
+                    <a class="nav-link" href="../../assets/php/scripts/logout.php">
                         <i class="fas fa-sign-out-alt"></i>
                         <p>Sair</p>
                     </a>
@@ -82,7 +82,7 @@ $dados = (mysqli_fetch_assoc($consulta));
       <div class="row">
         <div class="col-md-4 order-xl-2">
           <div class="card no-transition">
-            <img src="../assets/img/faces/avatar.jpg" alt="Image placeholder" class="card-img-top">
+            <img src="../../assets/img/faces/avatar.jpg" alt="Image placeholder" class="card-img-top">
             <div class="card-header pt-8 pt-md-4 pb-md-4">
               <div class="d-flex justify-content-between">
                 <a href="services-page.php" class="btn btn-outline-default btn-round p-2">
@@ -244,21 +244,21 @@ $dados = (mysqli_fetch_assoc($consulta));
   </div>
 
   <!--   Core JS Files   -->
-  <script src="../assets/js/core/jquery.min.js" type="text/javascript"></script>
-  <script src="../assets/js/core/popper.min.js" type="text/javascript"></script>
-  <script src="../assets/js/core/bootstrap.min.js" type="text/javascript"></script>
+  <script src="../../assets/js/core/jquery.min.js" type="text/javascript"></script>
+  <script src="../../assets/js/core/popper.min.js" type="text/javascript"></script>
+  <script src="../../assets/js/core/bootstrap.min.js" type="text/javascript"></script>
   <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
-  <script src="../assets/js/plugins/bootstrap-switch.js"></script>
+  <script src="../../assets/js/plugins/bootstrap-switch.js"></script>
   <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-  <script src="../assets/js/plugins/nouislider.min.js" type="text/javascript"></script>
+  <script src="../../assets/js/plugins/nouislider.min.js" type="text/javascript"></script>
   <!--  Plugin for the DatePicker, full documentation here: https://github.com/uxsolutions/bootstrap-datepicker -->
-  <script src="../assets/js/plugins/moment.min.js"></script>
-  <script src="../assets/js/plugins/bootstrap-datepicker.js" type="text/javascript"></script>
+  <script src="../../assets/js/plugins/moment.min.js"></script>
+  <script src="../../assets/js/plugins/bootstrap-datepicker.js" type="text/javascript"></script>
   <!-- Control Center for Paper Kit: parallax effects, scripts for the example pages etc -->
-  <script src="../assets/js/paper-kit.js?v=2.2.0" type="text/javascript"></script>
+  <script src="../../assets/js/paper-kit.js?v=2.2.0" type="text/javascript"></script>
   <!--scripts pessoais-->
   <script src="https://kit.fontawesome.com/d70538755c.js" crossorigin="anonymous"></script>
-  <script src="../assets/js/estilo/validacoes.js"></script>
+  <script src="../../assets/js/estilo/validacoes.js"></script>
 
   <script>
     $('.datetimepicker').datetimepicker({

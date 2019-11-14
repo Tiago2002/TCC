@@ -1,62 +1,12 @@
-var emailExiste = false;
-var telExiste = false;
-var tel = $("#numeroRegistro");
-var email = $("#emailRegistro");
-var senhaLogin = $("#senhaLogin");
-var emailLogin = $("#emailLogin");
-
 $(".alert").hide();
 
-//redefinição de senha
-var emailRecuperacao = $('#emailRecuperacao');
-var animacaoCarregando = $('.circle-loading');
-animacaoCarregando.hide();
-emailRecuperacao.change(function(){
-    ValidarEmail('emailRecuperacao');
-});
-
-$("#btn-recuperacao").click(function(){
-    $.ajax({
-        url: '../assets/php/scripts/redefinirSenha.php',
-        type: 'POST',
-        data: {
-            "email": emailRecuperacao.val(),
-        },
-        beforeSend: function(){
-            animacaoCarregando.fadeIn();
-        },
-        success: function(retorno) {
-            animacaoCarregando.hide();
-            var dados = JSON.parse(retorno);
-            if(dados.envio !== undefined){
-                verificarRecuperacao(dados.envio);
-            }
-            else if(dados.emailExiste !== undefined){
-                $('.alerta-reset').fadeIn();
-                $('#msg-alerta-reset').text('Email não está cadastradado');
-                temporizadorAlerta();
-            }
-        }
-    });
-});
-
-function verificarRecuperacao(verificador){
-    if(verificador == true){
-        $('.alerta-enviado').fadeIn();
-        temporizadorAlerta();
-    }else{
-        $('.alerta-reset').fadeIn();
-        $('#msg-alerta-reset').text('Ocorreu um erro, tente novamente');
-        temporizadorAlerta();
-    }
-}
-
-// verificar se os validadores e verificações estão corretas
-
-function validarCamposCadastro() {
+// validar se todos os campos possuem checagem e da um submit no form
+var emailExiste = false;
+var telExiste = false;
+function validarCamposCadastroCliente() {
     var retornoSenha = validarSenha('senha1', 'senha2');
-    var retornoEmail = ValidarEmail('emailRegistro');
-    var retornoNumero = validarNumero('numeroRegistro')
+    var retornoEmail = ValidarEmail('emailRegistroCliente');
+    var retornoNumero = validarNumero('numeroRegistroCliente')
 
     if (retornoSenha == true &&
         retornoEmail == true &&
@@ -67,8 +17,21 @@ function validarCamposCadastro() {
     }
 }
 
-// validadores dos campos de Senha, Email e telefone
+function validarCamposCadastroPrestadora() {
+    var retornoSenha = validarSenha('senha1', 'senha2');
+    var retornoEmail = ValidarEmail('emailRegistroPrestadora');
+    var retornoNumero = validarNumero('numeroRegistroPrestadora')
 
+    if (retornoSenha == true &&
+        retornoEmail == true &&
+        retornoNumero == true &&
+        emailExiste == true &&
+        telExiste == true) {
+        document.getElementById("form-registro").submit();
+    }
+}
+
+// verificar se formatação está correta
 function validarSenha(campoUm, campoDois) {
     var senhaUm = document.getElementById(campoUm).value;
     var senhaDois = document.getElementById(campoDois).value;
@@ -124,155 +87,14 @@ function validarNumero(idNumero) {
     }
 }
 
-email.change(function verificarEmailExistente() {
-    $.ajax({
-        url: '../assets/php/scripts/verificarDados.php',
-        type: 'POST',
-        data: {
-            "email": email.val()
-        },
-        success: function(data) {
-            var Verifica = JSON.parse(data);
-            emailExistente(Verifica.email);
-        }
-    });
-});
-
-tel.change(function verificarTelefoneExistente() {
-    $.ajax({
-        url: '../assets/php/scripts/verificarDados.php',
-        type: 'POST',
-        data: {
-            "numero": tel.val()
-        },
-        success: function(retorno) {
-            var Verifica = JSON.parse(retorno);
-            telefoneExistente(Verifica.telefone);
-        }
-    });
-});
-
-$("#btn-login").click(function verificarLogin() {
-    $.ajax({
-        url: '../assets/php/scripts/verificarDados.php',
-        type: 'POST',
-        data: {
-            "emailLogin": emailLogin.val(), 
-            "senhaLogin": senhaLogin.val()
-         },
-        success: function(data) {
-            var verifica = JSON.parse(data);
-            loginIncorreto(verifica.dados);
-        }
-    });
-});
-
-function loginIncorreto(verificador) {
-    if(verificador == true){
-        document.getElementById("form-login").submit();
-    }
-    else if(verificador == false){
-        $(".alerta-login").fadeIn();
-        temporizadorAlerta();
-    }
-}
-
-function emailExistente(verificadorEmail) {
-    if (verificadorEmail == true) {
-        $(".alerta-email").fadeIn();
-        $("#msg-alerta-email").text("Email Existente");
-        temporizadorAlerta();
-    } else if (verificadorEmail == false) {
-        emailExiste = true;
-    }
-}
-
-function telefoneExistente(verificadorTel) {
-    if (verificadorTel == true) {
-        $(".alerta-tel").fadeIn();
-        $("#msg-alerta-tel").text("Número Existente");
-        temporizadorAlerta();
-    } else if (verificadorTel == false) {
-        telExiste = true;
-    }
-}
-
 // função que apaga o alerta depois de 4 segundos
-
 function temporizadorAlerta() {
     setTimeout(function() {
         $(".alert").fadeOut();
     }, 4000);
 }
 
-// funções para validação de cep
-
-$(document).ready(function() {
-
-    $(".alert").hide();
-
-    function limpa_formulário_cep() {
-        // Limpa valores do formulário de cep.
-        $("#rua").val("");
-        $("#bairro").val("");
-        $("#cidade").val("");
-        $("#estado").val("");
-    }
-
-    function temporizadorAlerta() {
-        setTimeout(function() {
-            $(".alert").fadeOut();
-        }, 4000);
-    }
-
-    $("#cep").blur(function() {
-        var cep = $(this).val().replace(/\D/g, '');
-
-        var validacep = /^[0-9]{8}$/;
-
-        if (cep != "") {
-            //Valida o formato do CEP.
-            if (validacep.test(cep)) {
-                //Preenche os campos com "..." enquanto consulta webservice.
-                $("#logradouro").val("...");
-                $("#bairro").val("...");
-                $("#cidade").val("...");
-                $("#estado").val("...");
-                //Consulta o webservice viacep.com.br/
-                $.getJSON("https://viacep.com.br/ws/" + cep + "/json/?callback=?", function(dados) {
-                    if (!("erro" in dados)) {
-                        $(".alerta-sucesso").fadeIn();
-                        temporizadorAlerta()
-                        $("#logradouro").val(dados.logradouro);
-                        $("#bairro").val(dados.bairro);
-                        $("#cidade").val(dados.localidade);
-                        $("#estado").val(dados.uf);
-                    } //end if.
-                    else {
-                        $("#msg-alerta-erro").text("CEP não foi encontrado.");
-                        $(".alerta-erro").fadeIn();
-                        temporizadorAlerta()
-                    }
-                });
-            } //end if.
-            else {
-                //cep é inválido.
-                $("#msg-alerta-erro").text("Formato de CEP inválido.");
-                $(".alerta-erro").fadeIn();
-                temporizadorAlerta()
-            }
-        } //end if.
-        else {
-            //cep sem valor, limpa formulário.
-            $("#msg-alerta-erro").text("CEP sem Valor.");
-            $(".alerta-erro").fadeIn();
-            temporizadorAlerta()
-        }
-    });
-});
-
 // formatacao de inputs
-
 function formatar(formatacao, documento) {
     var i = documento.value.length;
     var saida = formatacao.substring(0, 1);
@@ -282,5 +104,4 @@ function formatar(formatacao, documento) {
         documento.value += texto.substring(0, 1);
     }
 
-}
-// para usar a função só passar o formato e o arquivo exemplo: formatar('##/##/####', this);
+} // para usar a função só passar o formato e o arquivo exemplo: formatar('##/##/####', this);

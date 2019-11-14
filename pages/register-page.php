@@ -24,7 +24,7 @@
 
  <body>
 
- <nav class="navbar navbar-expand-lg bg-transparent">
+ <nav class="navbar navbar-expand-lg bg-dark">
         <a href="../index.php" class="btn btn-success btn-round texto-preto ml-2"><i
                 class="fas fa-arrow-left mr-2"></i>Voltar</a>
     </nav>
@@ -75,7 +75,13 @@
                <div class="input-group-prepend">
                   <label class="input-group-text border">+55</label>
                </div>
-               <input type="tel" class="form-control border" maxlength="13" name="txtTel" id="numeroRegistro"
+               <input type="tel" class="form-control border" maxlength="13" name="txtTel" <?php
+                  if ($tipo == 0) {
+                     echo "id='numeroRegistroPrestadora'";
+                  } else {
+                     echo "id='numeroRegistroCliente'";
+                  }
+               ?>
                   OnKeyPress="formatar('## #####-####', this)" placeholder="Telefone" required>
             </div>
          </div>
@@ -85,7 +91,13 @@
          <div class="form-group mt-4">
             <h6>Endereço de email <span class="text-danger">*</span></h6>
             <div class="input-group">
-               <input type="text" class="form-control border" id="emailRegistro" name="txtEmail" placeholder="Endereço de email"
+               <input type="text" class="form-control border"<?php
+                  if ($tipo == 0) {
+                     echo "id='emailRegistroPrestadora'";
+                  } else {
+                     echo "id='emailRegistroCliente'";
+                  }
+               ?> name="txtEmail" placeholder="Endereço de email"
                   required>
             </div>
          </div>
@@ -108,8 +120,13 @@
             <h6 class="mt-2" id="msg-alerta-senha">Senhas Diferentes</h6>
          </div>
          <div class="text-center">
-            <button type="button" class="btn btn-success btn-lg btn-block btn-round texto-preto mt-3 mb-3"
-               onclick="validarCamposCadastro()">Cadastre-se</button>
+            <button type="button" class="btn btn-success btn-lg btn-block btn-round texto-preto mt-3 mb-3"<?php
+                  if ($tipo == 0) {
+                     echo "onclick='validarCamposCadastroPrestadora()'";
+                  } else {
+                     echo "onclick='validarCamposCadastroCliente()'";
+                  }
+               ?>>Cadastre-se</button>
             <small>
             Ao clicar em “Cadastre-se”, você aceita os <a href="#" class="badge badge-pill badge-info"
                data-toggle="modal" data-target="#modalTermos">termos de
@@ -247,5 +264,6 @@
    <script src="https://kit.fontawesome.com/d70538755c.js" crossorigin="anonymous"></script>
    <!-- scripts pessoais -->
    <script src="../assets/js/estilo/validacoes.js"></script>
+   <script src="../assets/js/estilo/cadastro.js"></script>
    </body>
 </html>
