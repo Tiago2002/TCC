@@ -12,6 +12,7 @@ create table Clientes (
     emailCliente VARCHAR(100) NOT NULL,
     senhaCliente VARCHAR(100) NOT NULL,
     ativo INT(1) UNSIGNED DEFAULT '1',
+    caminhoFoto VARCHAR (200),
     dtCadastro DATETIME NOT NULL,
     PRIMARY KEY (idCliente)
     );
@@ -36,6 +37,7 @@ create table Prestadoras (
     agenciaBanco INT(5) UNSIGNED,
     contaBanco VARCHAR(15),
     ativo INT(1) UNSIGNED DEFAULT '1',
+    caminhoFoto VARCHAR (200),
     dtCadastro DATETIME NOT NULL,
     PRIMARY KEY (idPrestadora),
     FOREIGN KEY (idBanco) REFERENCES Bancos (idBanco)
@@ -66,21 +68,24 @@ create table TbStatus (
 	);
 
 /* Tabela de especialidades das Prestadoras - Relação N:N */
-create table Espec_Prestadoras ( 
-    idEspecialidade INT(5) UNSIGNED NOT NULL,
+create table Areas_Prestadoras ( 
+    idArea INT(5) UNSIGNED NOT NULL,
     idPrestadora INT(5) UNSIGNED NOT NULL,
-    idStatus INT(2) UNSIGNED NOT NULL,
-    FOREIGN KEY (idEspecialidade) REFERENCES Especialidades (idEspecialidade),
-    FOREIGN KEY (idPrestadora) REFERENCES Prestadoras (idPrestadora),
-    FOREIGN KEY (idStatus) REFERENCES TbStatus (idStatus)
+    ativo INT(1) UNSIGNED DEFAULT '1',
+    FOREIGN KEY (idArea) REFERENCES Areas (idArea),
+    FOREIGN KEY (idPrestadora) REFERENCES Prestadoras (idPrestadora)
     );
 
 /* Tabela de endereço de Usuárias - Relação 1 - N */
 create table End_Clientes (
 	idEnd_Cliente INT(5) UNSIGNED NOT NULL AUTO_INCREMENT,
-    CEP INT(8) UNSIGNED,
+	CEP INT(8) UNSIGNED,
+    logradouro VARCHAR (200),
     complemento VARCHAR (100),
     numero VARCHAR (15),
+    bairro VARCHAR (100),
+    localidade VARCHAR (50),
+    uf VARCHAR (2),
     idCliente INT(5) UNSIGNED NOT NULL,
     PRIMARY KEY (idEnd_Cliente),
     FOREIGN KEY (idCliente) REFERENCES Clientes (idCliente)
@@ -88,10 +93,14 @@ create table End_Clientes (
 
 /* Tabela de endereço de Prestadoras - Relação 1 - N */
 create table End_Prestadoras (
-	idEnd_Prestadora INT(5) UNSIGNED NOT NULL AUTO_INCREMENT,
-    CEP INT(8) UNSIGNED,
+	idEnd_Prestadora INT(5) UNSIGNED NOT NULL AUTO_INCREMENT,	
+    CEP VARCHAR(8),
+    logradouro VARCHAR (200),
     complemento VARCHAR (100),
     numero VARCHAR (15),
+    bairro VARCHAR (100),
+    localidade VARCHAR (50),
+    uf VARCHAR (2),
     idPrestadora INT(5) UNSIGNED NOT NULL,
     PRIMARY KEY (idEnd_Prestadora),
     FOREIGN KEY (idPrestadora) REFERENCES Prestadoras (idPrestadora)
@@ -109,6 +118,7 @@ create table Servicos (
     horaServico TIME NOT NULL,
     idStatus INT(2) UNSIGNED NOT NULL,
     idPrestadora INT(5) UNSIGNED,
+    caminhoFoto VARCHAR (200),
     custoServico double(6,2) UNSIGNED NOT NULL,
     avaliaServico INT (2) UNSIGNED, /*será usado para o sistema de avaliação da Prestadora - de 0 a 10*/
     dataCriacao DATETIME NOT NULL,
@@ -121,12 +131,12 @@ create table Servicos (
     FOREIGN KEY (idStatus) REFERENCES TbStatus (idStatus),
     FOREIGN KEY (idPrestadora) REFERENCES Prestadoras (idPrestadora)
     );
-    
-	create table Recuperacao(
-		idRecuperacao int primary key auto_increment,
-		codigo text,
-		idCliente INT(5) UNSIGNED NOT NULL,
-		FOREIGN KEY (idCliente) REFERENCES Clientes (idCliente)
+
+create table Recuperacao(
+	idRecuperacao int primary key auto_increment,
+	codigo text,
+	idCliente INT(5) UNSIGNED NOT NULL,
+	FOREIGN KEY (idCliente) REFERENCES Clientes (idCliente)
 	);
 
 /*drop database dbProjetoTCC;*/

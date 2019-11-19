@@ -88,10 +88,5 @@ INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) value
 INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Mesa',100,5);
 INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Prateleira',27,5);
 
-/*INSERT - Tabela Especialidades das Prestadoras*/
-INSERT INTO Espec_Prestadoras (idEspecialidade, idPrestadora, idStatus) values (1, 1, 2);
-INSERT INTO Espec_Prestadoras (idEspecialidade, idPrestadora, idStatus) values (3, 1, 2);
-INSERT INTO Espec_Prestadoras (idEspecialidade, idPrestadora, idStatus) values (5, 1, 2);
-INSERT INTO Espec_Prestadoras (idEspecialidade, idPrestadora, idStatus) values (6, 1, 2);
-INSERT INTO Espec_Prestadoras (idEspecialidade, idPrestadora, idStatus) values (8, 1, 2);
-INSERT INTO Espec_Prestadoras (idEspecialidade, idPrestadora, idStatus) values (10, 1, 2);
+/*INSERT - Tabela Endereços das Prestadoras*/
+INSERT INTO End_Prestadoras (CEP, logradouro, complemento, numero, bairro, localidade, uf, idPrestadora) VALUES ('03254200', 'Rua Torre Azul', '', 72, 'Vila Industrial', 'São Paulo', 'SP', 1);
