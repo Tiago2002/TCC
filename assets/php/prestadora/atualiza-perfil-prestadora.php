@@ -79,52 +79,25 @@
 
 	else if(isset($_POST['btnArea'])){
 
-		$queryVerifica = "SELECT count(idArea) as qtdeAreas FROM Areas_Prestadoras
-		WHERE idPrestadora = '$id'";
-		$result = mysqli_query($conexao,$queryVerifica);
-		$verify = (mysqli_fetch_assoc($result));
-		$rows = $verify['qtdeAreas'];
-		
-		if($rows == 0){
-			$queryAreas = "SELECT idArea FROM Areas";
+		$sqlUpdateAreas = "UPDATE Areas_Prestadoras SET ativo = 0 WHERE idPrestadora = '$id'";
 
-			if ($arrayAreas = $conexao->query($queryAreas));
-			
-				while($atrArea = $arrayAreas->fetch_assoc()){
-					$areaTbArea = $atrArea["idArea"];
-
-					$insertAreas = "INSERT INTO Areas_Prestadoras (idArea, idPrestadora, ativo) VALUES ('$areaTbArea', '$id', 0)";
-
-					if (mysqli_query($conexao, $insertAreas)) {
-						echo "Dados inseridos com sucesso!";
-						header("Location: ../../../pages/prestadora/profile-page.php");
-					} else {
-						echo "Erro de atualização: " . mysqli_error($conexao);
-					}
-				}
-	
+			if (mysqli_query($conexao, $sqlUpdateAreas)) {
+				echo "Dados atualizados com sucesso!";
 			} else {
-
-				$sqlUpdateAreas = "UPDATE Areas_Prestadoras SET ativo = 0 WHERE idPrestadora = '$id'";
-
-					if (mysqli_query($conexao, $sqlUpdateAreas)) {
-						echo "Dados atualizados com sucesso!";
-					} else {
-						echo "Erro de atualização: " . mysqli_error($conexao);
-					}
+				echo "Erro de atualização: " . mysqli_error($conexao);
 			}
-				
-				foreach($_POST['opcao'] as $_op){
-					$sqlUpdateAtivo = "UPDATE Areas_Prestadoras SET ativo = 1 WHERE idPrestadora = $id AND idArea = $_op";
-					
-					if (mysqli_query($conexao, $sqlUpdateAtivo)) {
-						echo "Dados atualizados com sucesso!";
-						header("Location: ../../../pages/prestadora/profile-page.php");
-						} else {
-						echo "Erro de atualização: " . mysqli_error($conexao);
-						}	
+		
+		foreach($_POST['opcao'] as $_op){
+			$sqlUpdateAtivo = "UPDATE Areas_Prestadoras SET ativo = 1 WHERE idPrestadora = $id AND idArea = $_op";
+			
+			if (mysqli_query($conexao, $sqlUpdateAtivo)) {
+				echo "Dados atualizados com sucesso!";
+				header("Location: ../../../pages/prestadora/profile-page.php");
+				} else {
+				echo "Erro de atualização: " . mysqli_error($conexao);
+				}	
 
-				}
+		}
 		exit();
 	}
 

@@ -103,10 +103,12 @@ $dados = (mysqli_fetch_assoc($consulta));
                 <h6><?php echo $dados['nomePrestadora']; ?></h6>
                 <i class="ni location_pin mr-2"></i>
                 <h6><?php
+                if(isset($dados['dtNascPrestadora'])){
                 $dataNascimento = $dados['dtNascPrestadora'];
                 $date = new DateTime($dataNascimento);
                 $interval = $date->diff( new DateTime( date('d-m-Y') ) ); 
                 echo $interval->format( '%Y anos' );
+                }
                 ?></h6>
               </div>
             </div>
