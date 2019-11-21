@@ -34,7 +34,7 @@ create table Prestadoras (
     emailPrestadora VARCHAR(100) NOT NULL,
     senhaPrestadora VARCHAR(50) NOT NULL,
     idBanco INT(3) UNSIGNED,
-    agenciaBanco INT(5) UNSIGNED,
+    agenciaBanco VARCHAR(10),
     contaBanco VARCHAR(15),
     ativo INT(1) UNSIGNED DEFAULT '1',
     caminhoFoto VARCHAR (200),
@@ -131,12 +131,5 @@ create table Servicos (
     FOREIGN KEY (idStatus) REFERENCES TbStatus (idStatus),
     FOREIGN KEY (idPrestadora) REFERENCES Prestadoras (idPrestadora)
     );
-
-create table Recuperacao(
-	idRecuperacao int primary key auto_increment,
-	codigo text,
-	idCliente INT(5) UNSIGNED NOT NULL,
-	FOREIGN KEY (idCliente) REFERENCES Clientes (idCliente)
-	);
 
 /*drop database dbProjetoTCC;*/

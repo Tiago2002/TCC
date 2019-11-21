@@ -5,7 +5,7 @@ include_once("../../assets/php/scripts/conexao.php");
 
 $email = $_SESSION["email"];
 
-$queryPrincipal = "SELECT t1.idprestadora as id, nomePrestadora, telPrestadora, dtNascPrestadora, date_format(dtNascPrestadora,'%d/%m/%Y') as dtNasc, 
+$queryPrincipal = "SELECT t1.idprestadora as id, nomePrestadora, telPrestadora, dtNascPrestadora, caminhoFoto, date_format(dtNascPrestadora,'%d/%m/%Y') as dtNasc, 
 emailPrestadora, cpfPrestadora, t1.agenciaBanco as agenciaBanco, t1.idBanco as bancoPrestadora, t1.contaBanco as contaBanco, t2.*, t2.idEnd_Prestadora as idEnd_Prestadora, t3.banco as nomeBanco, agenciaBanco, contaBanco
 FROM Prestadoras t1 
 LEFT JOIN End_Prestadoras t2 on (t1.idPrestadora = t2.idPrestadora)
@@ -89,7 +89,13 @@ $dados = (mysqli_fetch_assoc($consulta));
         <div class="col-md-4 order-xl-2">
           <div class="card no-transition">
             <a href="#" data-toggle="modal" data-target="#modalImg">
-            <img src="../../assets/img/faces/avatar.jpg" alt="Image placeholder" class="card-img-top">
+            <?php if(isset($dados['caminhoFoto'])){
+              $caminhoFoto = $dados['caminhoFoto'];
+              echo "<img src='../../assets".$caminhoFoto."' alt='Image placeholder' class='card-img-top'>";
+            } else {
+              echo "<img src='../../assets/img/faces/default.png' alt='Image placeholder' class='card-img-top'>";
+            }
+            ?>
             </a>
             <div class="card-header">
               <div class="justify-content-center">
@@ -251,8 +257,8 @@ $dados = (mysqli_fetch_assoc($consulta));
                     </div>
                   </div>
                 </div>
-                </div>
-                </div>
+              </div>
+            </div>
           <!--  fim da div Informações pessoais  -->
 
           <!--  div Endereço  -->
@@ -316,7 +322,7 @@ $dados = (mysqli_fetch_assoc($consulta));
 
             <!--  Modal Imagem de Perfil  -->
             <div class="modal fade" id="modalImg" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-dialog modal-md" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
                     <h6 class="heading-small text-muted" id="exampleModalLabel">Alterar Imagem de Perfil</h6>
@@ -324,20 +330,16 @@ $dados = (mysqli_fetch_assoc($consulta));
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
-                  <div class="modal-body">
-                  <div class="fileinput fileinput-new" data-provides="fileinput">
-                    <span class="btn btn-outline-primary btn-file">
-                      <input type="file" name="" multiple>
-                      <span class="fileinput-new">Select file</span>
-                      <span class="fileinput-exists">Change</span>
-                    </span>
-                    <span class="fileinput-filename"></span>
-                    <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">&times;</a>
-                  </div>
-                  </div>
+                    <div class="modal-body">
+                      <form action="../../assets/php/prestadora/atualiza-perfil-prestadora.php" method="POST" enctype="multipart/form-data">
+                        <div class="input-group">
+                          <input type="file" name="imgPerfil" accept="image/*">
+                        </div>
+                    </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-outline-default btn-round m-3" data-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-outline-default btn-round m-3">Salvar mudanças</button>
+                    <button type="submit" name="btnImgPerfil" class="btn btn-outline-default btn-round m-3">Salvar mudanças</button>
+                  </form>
                   </div>
                 </div>
               </div>
@@ -635,6 +637,7 @@ $dados = (mysqli_fetch_assoc($consulta));
   <!--scripts pessoais-->
   <script src="https://kit.fontawesome.com/d70538755c.js" crossorigin="anonymous"></script>
   <script src="../../assets/js/estilo/validacoes.js"></script>
+  <script src="../../assets/js/estilo/cep.js"></script>
 
   <script>
     $('.datetimepicker').datetimepicker({

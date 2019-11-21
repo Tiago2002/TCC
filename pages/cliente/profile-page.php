@@ -5,9 +5,13 @@ include_once("../../assets/php/scripts/conexao.php");
 
 $email = $_SESSION["email"];
 
-$sql = "SELECT nomeCliente, telCliente, dtNascCliente, emailCliente FROM Clientes WHERE emailCliente = '$email'";
+$queryPrincipal = "SELECT t1.idCliente as id, nomeCliente, telCliente, dtNascCliente, caminhoFoto, date_format(dtNascCliente,'%d/%m/%Y') as dtNasc, 
+emailCliente, cpfCliente, t2.*, t2.idEnd_Cliente as idEnd_Cliente
+FROM Clientes t1 
+LEFT JOIN End_Clientes t2 on (t1.idCliente = t2.idCliente)
+WHERE emailCliente = '$email'";
 
-$consulta = $conexao->query($sql);
+$consulta = $conexao->query($queryPrincipal);
 
 $dados = (mysqli_fetch_assoc($consulta));
 ?>
@@ -80,11 +84,20 @@ $dados = (mysqli_fetch_assoc($consulta));
     <div class="container mt-5">
 
       <div class="row">
+      <!--  div imagem de perfil  -->
         <div class="col-md-4 order-xl-2">
           <div class="card no-transition">
-            <img src="../../assets/img/faces/avatar.jpg" alt="Image placeholder" class="card-img-top">
-            <div class="card-header pt-8 pt-md-4 pb-md-4">
-              <div class="d-flex justify-content-between">
+          <a href="#" data-toggle="modal" data-target="#modalImg">
+            <?php if(isset($dados['caminhoFoto'])){
+              $caminhoFoto = $dados['caminhoFoto'];
+              echo "<img src='../../assets".$caminhoFoto."' alt='Image placeholder' class='card-img-top'>";
+            } else {
+              echo "<img src='../../assets/img/faces/default.png' alt='Image placeholder' class='card-img-top'>";
+            }
+            ?>
+            </a>
+            <div class="card-header">
+              <div class="justify-content-center">
                 <a href="services-page.php" class="btn btn-outline-default btn-round p-2">
                   <i class="fas fa-cash-register"></i> Serviços
                 </a>
@@ -94,24 +107,21 @@ $dados = (mysqli_fetch_assoc($consulta));
               <div class="text-center">
                 <h6><?php echo $dados['nomeCliente']; ?></h6>
                 <i class="ni location_pin mr-2"></i>
-                <h6>23 Anos</h6>
+                <h6><?php
+                if(isset($dados['dtNascCliente'])){
+                $dataNascimento = $dados['dtNascCliente'];
+                $date = new DateTime($dataNascimento);
+                $interval = $date->diff( new DateTime( date('d-m-Y') ) ); 
+                echo $interval->format( '%Y anos' );
+                }
+                ?></h6>
               </div>
             </div>
           </div>
-
-          <!--<div class="card">
-            <div class="card-body">
-              This is some text within a card body.
-            </div>
           </div>
-          <div class="card">
-            <div class="card-body">
-              This is some text within a card body.
-            </div>
-          </div>-->
+          <!--  fim da div imagem de perfil  -->
 
-        </div>
-
+        <!--  div Informações pessoais  -->
         <div class="col-xl-8">
           <div class="card no-transition">
             <div class="card-header">
@@ -120,128 +130,342 @@ $dados = (mysqli_fetch_assoc($consulta));
                   <h6>Perfil</h6>
                 </div>
                 <div class="col-4 text-right">
-                  <a href="#" class="btn btn-outline-default btn-round">Salvar</a>
+                  <!--  Botão editar abre um modal para edição das informações pessoais  -->
+                  <a href="#" class="btn btn-outline-default btn-round" data-toggle="modal" data-target="#modalInfo">
+                    Editar
+                  </a>
                 </div>
               </div>
             </div>
 
             <div class="card-body">
-              <form>
                 <h6 class="heading-small text-muted mb-4">Informações Pessoais</h6>
                 <div class="pl-lg-4">
                   <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-lg-7">
+                    <label class="form-control-label" for="nome">Nome Completo</label>
+                    <h6><?php echo $dados['nomeCliente']; ?></h6>
+                    </div>
+                    <div class="col-lg-4">
+                    <label class="form-control-label" for="cpf">CPF</label>
+                    <h6><?php echo $dados['cpfCliente']; ?></h6><br />
+                    </div>
+                    </div>
+                    <div class="row">
+                    <div class="col-lg-5">
+                    <label class="form-control-label" for="email">e-mail</label>
+                    <h6><?php echo $dados['emailCliente']; ?></h6><br />
+                    </div>
+                    <div class="col-lg-4">
+                    <label class="form-control-label" for="telefone">Telefone</label>
+                    <h6>+55<?php echo $dados['telCliente']; ?></h6><br />
+                    </div>
+                    <div class="col-lg-2">
+                    <label class="label-control" for="dataNasc">Nascimento</label>
+                    <h6><?php echo $dados['dtNasc'];?></h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <!--  fim da div Informações pessoais  -->
+
+                <!--  div Endereço  -->
+          <div class="card no-transition">
+            <div class="card-header">
+              <div class="row align-items-center">
+                <div class="col-8">
+                  <h6>Endereço</h6>
+                </div>
+                <div class="col-4 text-right">
+                  <!--  Botão editar abre um modal para edição do endereço  -->
+                  <a href="#" class="btn btn-outline-default btn-round" data-toggle="modal" data-target="#modalEndereco">
+                    Editar
+                  </a>
+                </div>
+              </div>
+            </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-5">
+                    <div class="form-group form-1">
+                      <label class="form-control-label" for="cep">CEP</label>
+                      <h6><?php echo $dados['CEP']; ?></h6>
+                    </div>
+                    </div>  
+                    <div class="col-md-5">
+                      <label class="form-control-label" for="complemento">Complemento</label>
+                      <h6><?php echo $dados['complemento']; ?></h6>
+                    </div>
+                    <div class="col-md-2">
+                      <label class="form-control-label" for="email"> Nº </label>
+                      <h6><?php echo $dados['numero']; ?></h6><br />
+                    </div>
+                  </div>
+                <div class="row">
+                  <div class="col-md-11">
+                    <div class="form-group form-2">
+                      <label class="form-control-label" for="bairro">Logradouro</label>
+                      <h6><?php echo $dados['logradouro']; ?></h6>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                
+                  <div class="col-md-5">
+                    
+                      <label class="form-control-label" for="bairro">Bairro</label>
+                      <h6><?php echo $dados['bairro']; ?></h6>
+                    </div>
+                    <div class="col-md-5">
+                      <label class="form-control-label" for="localidade"> Localidade  </label>
+                      <h6><?php echo utf8_encode($dados['localidade']); ?></h6>
+                    </div>
+                    <div class="col-md-2">
+                      <label class="form-control-label" for="uf"> UF  </label>
+                      <h6><?php echo $dados['uf']; ?></h6>
+                    </div>
+                </div>
+            </div>
+            <!--  fim da div Endereço  -->
+
+                <!--  Modal Imagem de Perfil  -->
+            <div class="modal fade" id="modalImg" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-md" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h6 class="heading-small text-muted" id="exampleModalLabel">Alterar Imagem de Perfil</h6>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                    <div class="modal-body">
+                      <form action="../../assets/php/cliente/atualiza-perfil-cliente.php" method="POST" enctype="multipart/form-data">
+                        <div class="input-group">
+                          <input type="file" name="imgPerfil" accept="image/*">
+                        </div>
+                    </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-default btn-round m-3" data-dismiss="modal">Fechar</button>
+                    <button type="submit" name="btnImgPerfil" class="btn btn-outline-default btn-round m-3">Salvar mudanças</button>
+                  </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--  Fim do Modal Imagem de Perfil  --> 
+            
+            <!--  Modal Informaçoes pessoais  -->
+            <div class="modal fade" id="modalInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h6 class="heading-small text-muted" id="exampleModalLabel">Editar Informações Pessoais</h6>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+            <div class="modal-body">
+              <form action="../../assets/php/cliente/atualiza-perfil-cliente.php" method="POST">
+                <div class="pl-lg-4">
+                  <div class="row">
+                    <div class="col-lg-7">
                       <div class="form-group">
                         <label class="form-control-label" for="nome">Nome Completo</label>
                         <input type="text" id="nome" name="txtNome" class="form-control" placeholder="Nome completo"
                           value="<?php echo $dados['nomeCliente']; ?>">
                       </div>
-                    </div>
-                    <div class="col-lg-6">
+                    </div><div class="col-lg-5">
                       <div class="form-group">
-                        <label class="form-control-label" for="email">Endereço de e-mail</label>
-                        <input type="email" id="email" name="txtEmail" class="form-control" placeholder="Endereço de e-mail"
-                          value="<?php echo $dados['emailCliente']; ?>">
+                        <label class="form-control-label" for="cpf">CPF</label>
+                        <input type="text" id="cpf" name="cpf" class="form-control" placeholder="Digite apenas números"
+                          value="<?php echo $dados['cpfCliente']; ?>">
                       </div>
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-lg-5">
+                      <div class="form-group">
+                        <label class="form-control-label" for="email">e-mail</label>
+                        <input type="email" id="email" name="txtEmail" class="form-control" placeholder="Endereço de e-mail"
+                          value="<?php echo $dados['emailCliente']; ?>" readonly>
+                      </div>
+                    </div>
+                    <div class="col-lg-4">
                       <div class="form-group">
                         <label class="form-control-label" for="nome">Telefone</label>
                         <input type="text" id="nome" class="form-control" name="txtTelefone" placeholder="Telefone" value="<?php echo $dados['telCliente']; ?>">
                       </div>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-3">
                       <div class="form-group">
                         <label class="label-control" for="input-address">Nascimento</label>
-                        <input type="text" class="form-control datetimepicker" name="txtNascimento" value="<?php echo $dados['telCliente']; ?>" placeholder="99/99/9999" />
+                        <input type="text" class="form-control datetimepicker" name="txtNascimento" value="<?php echo $dados['dtNasc']; ?>" placeholder="99/99/9999" />
                       </div>
                     </div>
                   </div>
                 </div>
-                <hr class="my-4">
-                <!-- Address -->
-                <h6 class="heading-small text-muted mb-4">Endereço e Formação</h6>
-                <div class="alerta-erro alert alert-danger fade show" role="alert">
-                  <strong><span id="msg-alerta-erro" class="h6"></span></strong>
-                </div>
-                <div class="alerta-sucesso alert alert-success" role="alert">
-                  <strong>Endereço Trocado com sucesso</strong>
-                </div>
-                <div class="row">
-                  <div class="col-md-5">
-                    <div class="form-group form-cep">
-                      <label class="form-control-label" for="cep">CEP</label>
-                      <input type="text" id="cep" class="form-control" placeholder="CEP">
-                    </div>
                   </div>
-                  <div class="col-md-5">
-                    <div class="form-group">
-                      <label class="form-control-label" for="logradouro">Complemento</label>
-                      <input id="complemento" class="form-control" placeholder="Complemento" value="" type="text">
-                    </div>
-                  </div>
-                  <div class="col-md-2">
-                    <div class="form-group">
-                      <label class="form-control-label" for="numeroEndereco">N°</label>
-                      <input id="numeroEndereco" class="form-control" placeholder="Número" value="10" type="text">
-                    </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-default btn-round m-3" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" name="btnInfo" class="btn btn-outline-default btn-round m-3">Salvar mudanças</button>
+                  </form>
                   </div>
                 </div>
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="form-group">
-                      <label class="form-control-label" for="logradouro">Logradouro</label>
-                      <input id="logradouro" class="form-control" placeholder="logradouro" value="" type="text"
-                        readonly>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="form-group">
-                      <label class="form-control-label" for="bairro">Bairro</label>
-                      <input id="bairro" class="form-control" placeholder="bairro" value="" type="text" readonly>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-5">
-                    <div class="form-group">
-                      <label class="form-control-label" for="cidade">Cidade</label>
-                      <input type="text" id="cidade" class="form-control" placeholder="Cidade" value="" readonly>
-                    </div>
-                  </div>
-                  <div class="col-md-5">
-                    <div class="form-group">
-                      <label class="form-control-label" for="pais">País</label>
-                      <input type="text" id="pais" class="form-control" placeholder="País" value="Brasil" readonly>
-                    </div>
-                  </div>
-                  <div class="col-md-2">
-                    <div class="form-group">
-                      <label class="form-control-label" for="Estado">Estado</label>
-                      <input type="text" id="estado" class="form-control" placeholder="Estado" value="" readonly>
-                    </div>
-                  </div>
-                </div>
-                <hr class="my-4">
-                <!-- Description -->
-                <h6 class="heading-small text-muted mb-4">Sobre mim!</h6>
-                <div class="pl-lg-4">
-                  <div class="form-group">
-                    <textarea rows="4" class="form-control" placeholder="Escreva algo sobre você"></textarea>
-                  </div>
-                </div>
-              </form>
+              </div>
             </div>
-          </div>
-        </div>
-      </div>
+            <!--  Fim do Modal Informaçoes pessoais  -->
 
-    </div>
-  </div>
+            <!--  Modal Endereço  -->
+            <div class="modal fade" id="modalEndereco" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h6 class="heading-small text-muted" id="exampleModalLabel">Editar Endereço</h6>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+
+                        </div>
+                        <div class="modal-body">
+                            <form action="../../assets/php/cliente/atualiza-perfil-cliente.php" method="POST">
+                                <div class="alerta-erro alert alert-danger fade show" role="alert">
+                                    <strong><span id="msg-alerta-erro" class="h6"></span></strong>
+                                </div>
+                                <div class="alerta-sucesso alert alert-success" role="alert">
+                                    <strong>Endereço Trocado com sucesso</strong>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <div class="form-group form-cep">
+                                            <label class="form-control-label" for="cep">CEP</label>
+                                            <input type="text" id="cep" name="txtCep" class="form-control" value="<?php echo $dados['CEP']; ?>">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="complemento">Complemento</label>
+                                            <input type="text" id="complemento" name="txtComp" class="form-control" placeholder="Complemento" value="<?php echo $dados['complemento']; ?>" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="numeroEndereco">N°</label>
+                                            <input type="text" id="numeroEndereco" name="txtNum" class="form-control" placeholder="Número" value="<?php echo $dados['numero']; ?>" type="text">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="logradouro">Logradouro</label>
+                                            <input type="text" id="logradouro" name="txtLog" class="form-control" placeholder="logradouro" value="<?php echo $dados['logradouro']; ?>" type="text" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="bairro">Bairro</label>
+                                            <input type="text" id="bairro" name="txtBairro" class="form-control" placeholder="bairro" value="<?php echo $dados['bairro']; ?>" type="text" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="cidade">Localidade</label>
+                                            <input type="text" id="cidade" name="txtLocal" class="form-control" placeholder="Cidade" value="<?php echo utf8_encode($dados['localidade']); ?>" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="uf">Estado</label>
+                                            <input type="text" id="estado" name="txtUf" class="form-control" placeholder="Estado" value="<?php echo $dados['uf']; ?>" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                          </div>
+                          <div class="modal-footer">
+                              <button type="button" class="btn btn-outline-default btn-round m-3" data-dismiss="modal">Fechar</button>
+                              <button type="submit" name="btnEndereco" class="btn btn-outline-default btn-round m-3">Salvar mudanças</button>
+                              </form>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <!--  Fim do Modal Endereço  -->
+
+            <!--  Modal Dados Bancários  -->
+            <div class="modal fade" id="modalDadosBancarios" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-md" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h6 class="heading-small text-muted" id="exampleModalLabel">Editar Dados Bancários</h6>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <form action="../../assets/php/cliente/atualiza-perfil-cliente.php" method="POST">
+                    <div class="modal-body">
+                    <div class="row">
+                    <div class="col-md-12">
+                    <div class="form-group">
+                    <label for="selectBanco">Banco</label>
+                      <select class="form-control" name="selectBanco" id="selectBanco">
+                        <option value=""> -- Selecione o Banco -- </option>   
+                    <?php
+                      include("../../assets/php/scripts/conexao.php");
+      
+                      if ($conexao->connect_errno) {
+                        printf("Connect failed: %s\n", $conexao->connect_error);
+                        exit();
+                      }
+                      $id = $dados["id"];
+
+                      $queryDadosBanc = "SELECT idBanco, banco from Bancos";
+
+                        if ($dadosBanc = $conexao->query($queryDadosBanc)){
+
+                          while($info3 = $dadosBanc->fetch_assoc()){
+
+                            if ($info3['idBanco'] == $dados['bancoCliente']){
+                              echo "<option selected='selected' value=".$info3['idBanco'].">".$info3['banco']."</option>";
+                            } else {
+                              echo "<option value=".$info3['idBanco'].">".$info3['banco']."</option>";
+                            }
+                          } 
+                          $dadosBanc->free();
+                        }
+                        $conexao->close();
+                    ?>
+                    </select>
+                    </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-6">
+                          <div class="form-group">
+                              <label class="form-control-label" for="logradouro">Agência</label>
+                              <input type="text" id="agenciaBanco" name="txtAgBanco" class="form-control" placeholder="1234" value="<?php echo $dados['agenciaBanco']; ?>" type="text">
+                          </div>
+                      </div>
+                      <div class="col-md-6">
+                          <div class="form-group">
+                              <label class="form-control-label" for="bairro">Conta</label>
+                              <input type="text" id="contaBanco" name="txtContaBanco" class="form-control" placeholder="123456-7" value="<?php echo $dados['contaBanco']; ?>" type="text">
+                          </div>
+                      </div>
+                    </div>
+
+                    </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-default btn-round m-3" data-dismiss="modal">Fechar</button>
+                        <button type="submit" name="btnDadosBancarios" class="btn btn-outline-default btn-round m-3">Salvar mudanças</button>
+                  </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--  Fim do Modal Dados Bancários  -->
 
   <!--   Core JS Files   -->
   <script src="../../assets/js/core/jquery.min.js" type="text/javascript"></script>
@@ -259,6 +483,7 @@ $dados = (mysqli_fetch_assoc($consulta));
   <!--scripts pessoais-->
   <script src="https://kit.fontawesome.com/d70538755c.js" crossorigin="anonymous"></script>
   <script src="../../assets/js/estilo/validacoes.js"></script>
+  <script src="../../assets/js/estilo/cep.js"></script>
 
   <script>
     $('.datetimepicker').datetimepicker({

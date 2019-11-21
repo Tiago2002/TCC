@@ -30,7 +30,7 @@ INSERT INTO Bancos (idbanco, banco) values (336,'336 - BANCO C6');
 /*INSERT - Tabela Prestadoras*/
 INSERT INTO Prestadoras (nomePrestadora, cpfPrestadora, dtNascPrestadora, telPrestadora, emailPrestadora, senhaPrestadora, idBanco, agenciaBanco, contaBanco, dtCadastro)
     values ('prestadora', '48281625856', '1998-12-31', '11987651234', 'prestadora@email.com', MD5('prestadora1234'), 
-    001, 0123, '123456-7', NOW());
+    001, '0123', '123456-7', NOW());
 
 /*INSERT - Tabela Áreas*/
 INSERT INTO Areas (nomeArea) value ('Manutenção Elétrica'); /* idArea = 1 */
@@ -87,6 +87,13 @@ INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) value
 INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Guarda-roupa - portas de correr',80,5); -- por módulo 
 INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Mesa',100,5);
 INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Prateleira',27,5);
+
+/*INSERT - Tabela Endereços das Prestadoras*/
+INSERT INTO Areas_Prestadoras (idArea, idPrestadora, ativo) VALUES (1,1,0);
+INSERT INTO Areas_Prestadoras (idArea, idPrestadora, ativo) VALUES (2,1,0);
+INSERT INTO Areas_Prestadoras (idArea, idPrestadora, ativo) VALUES (3,1,0);
+INSERT INTO Areas_Prestadoras (idArea, idPrestadora, ativo) VALUES (4,1,0);
+INSERT INTO Areas_Prestadoras (idArea, idPrestadora, ativo) VALUES (5,1,0);
 
 /*INSERT - Tabela Endereços das Prestadoras*/
 INSERT INTO End_Prestadoras (CEP, logradouro, complemento, numero, bairro, localidade, uf, idPrestadora) VALUES ('03254200', 'Rua Torre Azul', '', 72, 'Vila Industrial', 'São Paulo', 'SP', 1);

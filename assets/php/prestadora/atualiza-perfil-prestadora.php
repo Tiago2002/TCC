@@ -107,7 +107,7 @@
 		$agenciaBanco = $conexao->real_escape_string($_POST["txtAgBanco"]);
 		$contaBanco = $conexao->real_escape_string($_POST["txtContaBanco"]);
 
-		$queryDadosBanc = "UPDATE Prestadoras SET idBanco = $idBanco, agenciaBanco = $agenciaBanco, contaBanco = '$contaBanco' WHERE idPrestadora = $id";
+		$queryDadosBanc = "UPDATE Prestadoras SET idBanco = $idBanco, agenciaBanco = '$agenciaBanco', contaBanco = '$contaBanco' WHERE idPrestadora = $id";
 
 		if (mysqli_query($conexao, $queryDadosBanc)) {
 			echo "Dados atualizados com sucesso!";
@@ -117,5 +117,31 @@
 			}
 		exit();
 	}
+
+	else if(isset($_POST['btnImgPerfil'])){
+
+		if(isset($_FILES['imgPerfil'])){
+
+			$ext = strtolower(substr($_FILES['imgPerfil']['name'],-4)); //Pegando extensão do arquivo
+			$new_name = "prestadora-$id" . $ext; //Definindo um novo nome para o arquivo
+			$dir = '../../img/prestadoras/'; //Diretório para uploads
+			$pasta = '/img/prestadoras/';
+			$caminhoFoto = "$pasta" . "$new_name";
+			move_uploaded_file($_FILES['imgPerfil']['tmp_name'], $dir.$new_name); //Fazer upload do arquivo
+			echo("Imagem enviada com sucesso!");
+
+			$query = "UPDATE Prestadoras SET caminhoFoto = '$caminhoFoto' WHERE idPrestadora = $id";
+
+			if (mysqli_query($conexao, $query)) {
+				echo "Dados atualizados com sucesso!";
+				header("Location: ../../../pages/prestadora/profile-page.php");
+				} else {
+				echo "Erro de atualização: " . mysqli_error($conexao);
+				}
+			exit();
+ 		} 
+
+	}
+
 	mysqli_close($conexao);
 ?>

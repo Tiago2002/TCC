@@ -27,8 +27,8 @@
 <body>
 
     <nav class="navbar navbar-expand-lg bg-dark mb-5">
-        <a href="../index.php" class="btn btn-success btn-round texto-preto ml-2"><i
-                class="fas fa-arrow-left mr-2"></i>Voltar</a>
+        <a href="../index.php" class="btn btn-success btn-round texto-preto ml-2">
+        <i class="fas fa-arrow-left mr-2"></i>Voltar</a>
     </nav>
 
     <div class="container">
