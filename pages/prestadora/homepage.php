@@ -43,7 +43,7 @@ include_once("../../assets/php/scripts/conexao.php");
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="services-page.php">
+                        <a class="nav-link" href="servicos.php">
                             <i class="fas fa-cash-register"></i>
                             <p>Meus Serviços</p>
                         </a>

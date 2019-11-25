@@ -79,7 +79,7 @@ create table Areas_Prestadoras (
 /* Tabela de endereço de Usuárias - Relação 1 - N */
 create table End_Clientes (
 	idEnd_Cliente INT(5) UNSIGNED NOT NULL AUTO_INCREMENT,
-	CEP INT(8) UNSIGNED,
+	CEP VARCHAR(8),
     logradouro VARCHAR (200),
     complemento VARCHAR (100),
     numero VARCHAR (15),

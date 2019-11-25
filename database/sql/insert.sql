@@ -2,6 +2,9 @@
 INSERT INTO Clientes (nomeCliente, telCliente, cpfCliente, dtNascCliente, emailCliente, senhaCliente, dtCadastro) 
     values ('cliente', '95132945872', '11998761234', '1990-01-01','cliente@email.com', MD5('cliente1234'), NOW());
 
+/*INSERT - Tabela Endereços das Clientes*/
+INSERT INTO End_Clientes (CEP, logradouro, complemento, numero, bairro, localidade, uf, idCliente) VALUES ('03254200', 'Rua Torre Azul', '', 72, 'Vila Industrial', 'São Paulo', 'SP', 1);
+
 /*INSERT - Tabela TbStatus*/
 INSERT INTO TbStatus (descricaoStatus) VALUE ('Pendente');
 INSERT INTO TbStatus (descricaoStatus) VALUE ('Aprovado');
@@ -31,6 +34,9 @@ INSERT INTO Bancos (idbanco, banco) values (336,'336 - BANCO C6');
 INSERT INTO Prestadoras (nomePrestadora, cpfPrestadora, dtNascPrestadora, telPrestadora, emailPrestadora, senhaPrestadora, idBanco, agenciaBanco, contaBanco, dtCadastro)
     values ('prestadora', '48281625856', '1998-12-31', '11987651234', 'prestadora@email.com', MD5('prestadora1234'), 
     001, '0123', '123456-7', NOW());
+    
+/*INSERT - Tabela Endereços das Prestadoras*/
+INSERT INTO End_Prestadoras (CEP, logradouro, complemento, numero, bairro, localidade, uf, idPrestadora) VALUES ('03254200', 'Rua Torre Azul', '', 72, 'Vila Industrial', 'São Paulo', 'SP', 1);
 
 /*INSERT - Tabela Áreas*/
 INSERT INTO Areas (nomeArea) value ('Manutenção Elétrica'); /* idArea = 1 */
@@ -88,12 +94,16 @@ INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) value
 INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Mesa',100,5);
 INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Prateleira',27,5);
 
-/*INSERT - Tabela Endereços das Prestadoras*/
+/*INSERT - Tabela Serviços*/
+INSERT INTO Servicos (idServico, idCliente, idEnd_Cliente, idArea, idEspecialidade, descricaoServico, dataServico, horaServico, idStatus, custoServico, dataCriacao, dataAlteracao) VALUES (1, 1, 1, 1, 1, 'Teste de Descrição de Serviço 1', '2019-11-30', '10:30:00', 2, 50, now(), now());
+INSERT INTO Servicos (idServico, idCliente, idEnd_Cliente, idArea, idEspecialidade, descricaoServico, dataServico, horaServico, idStatus, custoServico, dataCriacao, dataAlteracao) VALUES (2, 1, 1, 2, 13, 'Teste de Descrição de Serviço 13', '2019-11-29', '13:00:00', 2, 150, now(), now());
+INSERT INTO Servicos (idServico, idCliente, idEnd_Cliente, idArea, idEspecialidade, descricaoServico, dataServico, horaServico, idStatus, custoServico, dataCriacao, dataAlteracao) VALUES (3, 1, 1, 3, 25, 'Teste de Descrição de Serviço 25', '2019-11-28', '12:00:00', 2, 40, now(), now());
+INSERT INTO Servicos (idServico, idCliente, idEnd_Cliente, idArea, idEspecialidade, descricaoServico, dataServico, horaServico, idStatus, custoServico, dataCriacao, dataAlteracao) VALUES (4, 1, 1, 4, 30, 'Teste de Descrição de Serviço 30', '2019-11-27', '16:00:00', 2, 54, now(), now());
+INSERT INTO Servicos (idServico, idCliente, idEnd_Cliente, idArea, idEspecialidade, descricaoServico, dataServico, horaServico, idStatus, custoServico, dataCriacao, dataAlteracao) VALUES (5, 1, 1, 5, 42, 'Teste de Descrição de Serviço 42', '2019-11-26', '09:00:00', 2, 100, now(), now());
+
+/*INSERT - Tabela Areas das Prestadoras*/
 INSERT INTO Areas_Prestadoras (idArea, idPrestadora, ativo) VALUES (1,1,0);
 INSERT INTO Areas_Prestadoras (idArea, idPrestadora, ativo) VALUES (2,1,0);
 INSERT INTO Areas_Prestadoras (idArea, idPrestadora, ativo) VALUES (3,1,0);
 INSERT INTO Areas_Prestadoras (idArea, idPrestadora, ativo) VALUES (4,1,0);
 INSERT INTO Areas_Prestadoras (idArea, idPrestadora, ativo) VALUES (5,1,0);
-
-/*INSERT - Tabela Endereços das Prestadoras*/
-INSERT INTO End_Prestadoras (CEP, logradouro, complemento, numero, bairro, localidade, uf, idPrestadora) VALUES ('03254200', 'Rua Torre Azul', '', 72, 'Vila Industrial', 'São Paulo', 'SP', 1);

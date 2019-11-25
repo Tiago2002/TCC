@@ -12,7 +12,7 @@ LEFT JOIN End_Prestadoras t2 on (t1.idPrestadora = t2.idPrestadora)
 LEFT JOIN Bancos t3 on (t1.idBanco = t3.idBanco)
 WHERE emailPrestadora = '$email'";
 
-$consulta = $conexao->query($queryPrincipal);
+$consulta = $conexao->query($queryPrincipal); 
 
 $dados = (mysqli_fetch_assoc($consulta));
 ?>
@@ -57,7 +57,7 @@ $dados = (mysqli_fetch_assoc($consulta));
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="servicos.php">
                         <i class="fas fa-cash-register"></i>
                         <p>Meus Serviços</p>
                     </a>
