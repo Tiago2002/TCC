@@ -200,7 +200,7 @@ $email = $_SESSION["email"];
                                                 echo "<input type='hidden' name='idServico' value='".$servico['idServico']."'>";
 
                                         echo "</div>";
-                                        echo "<button type='sumbit' name='btnServico' class='btn btn-success btn-round texto-preto float-right mt-2'>Aceitar Serviço</button>";
+                                        echo "<button type='sumbit' onclick='confirmacao()' name='btnServico' class='btn btn-success btn-round texto-preto float-right mt-2'>Aceitar Serviço</button>";
                                         echo "</form>";
                                     echo "</div>";
                                 echo "</div>";
@@ -209,6 +209,12 @@ $email = $_SESSION["email"];
                     }
                     $conexao->close();
                 ?>
+
+<script>
+function confirmacao() {
+  alert("Negocio fechado!");
+}
+</script>
 
             <!-- fim da div serviços -->
 
@@ -237,6 +243,9 @@ $email = $_SESSION["email"];
     </div>
     <!--   end modal -->
 </body>
+
+
+
 <!--   Core JS Files   -->
 <script src="../../assets/js/core/jquery.min.js" type="text/javascript"></script>
 <script src="../../assets/js/core/popper.min.js" type="text/javascript"></script>
