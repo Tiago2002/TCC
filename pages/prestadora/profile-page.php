@@ -56,12 +56,17 @@ $dados = (mysqli_fetch_assoc($consulta));
                         <p>Ajuda</p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="servicos.php">
-                        <i class="fas fa-cash-register"></i>
-                        <p>Meus Serviços</p>
-                    </a>
-                </li>
+                <div class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">
+                            <i class="fas fa-cash-register" aria-hidden="true"></i><p> Serviços</p>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-right dropdown-success">
+                        <a class="dropdown-item" href="homepage.php"><p class="texto-preto">Visão Geral</p></a>
+                                <a class="dropdown-item" href="servicos.php"><p class="texto-preto">Buscar Serviços</p></a>
+                                <a class="dropdown-item" href="servicos-atribuidos.php"><p class="texto-preto">Meus Serviços</p></a>
+                                <a class="dropdown-item" href="servicos-finalizados.php"><p class="texto-preto">Serviços Finalizados</p></a>
+                        </ul>
+                    </div>
                 <li class="nav-item">
                     <a class="nav-link" href="profile-page.php">
                         <i class="fas fa-female"></i>
@@ -99,7 +104,7 @@ $dados = (mysqli_fetch_assoc($consulta));
             </a>
             <div class="card-header">
               <div class="justify-content-center">
-                <a href="services-page.php" class="btn btn-outline-default btn-round p-2">
+                <a href="homepage.php" class="btn btn-outline-default btn-round p-2">
                   <i class="fas fa-cash-register"></i> Serviços
                 </a>
               </div>

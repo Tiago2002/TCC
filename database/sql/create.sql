@@ -120,6 +120,8 @@ create table Servicos (
     idPrestadora INT(5) UNSIGNED,
     caminhoFoto VARCHAR (200),
     custoServico double(6,2) UNSIGNED NOT NULL,
+    aprPrestadora INT (1) UNSIGNED DEFAULT 0,
+    aprCliente INT (1) UNSIGNED DEFAULT 0,
     avaliaServico INT (2) UNSIGNED, /*será usado para o sistema de avaliação da Prestadora - de 0 a 10*/
     dataCriacao DATETIME NOT NULL,
     dataAlteracao DATETIME NOT NULL,

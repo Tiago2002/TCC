@@ -50,10 +50,10 @@ $email = $_SESSION["email"];
                             <i class="fas fa-cash-register" aria-hidden="true"></i><p> Serviços</p>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-right dropdown-success">
-                            <a class="dropdown-item" href="homepage.php"><p class="texto-preto">Visão Geral</p></a>
-                            <a class="dropdown-item" href="#"><p class="texto-preto">Buscar Serviços</p></a>
-                            <a class="dropdown-item" href="servicos-atribuidos.php"><p class="texto-preto">Meus Serviços</p></a>
-                            <a class="dropdown-item" href="servicos-finalizados.php"><p class="texto-preto">Serviços Finalizados</p></a>
+                                <a class="dropdown-item" href="homepage.php"><p class="texto-preto">Visão Geral</p></a>
+                                <a class="dropdown-item" href="servicos.php"><p class="texto-preto">Buscar Serviços</p></a>
+                                <a class="dropdown-item" href="#"><p class="texto-preto">Meus Serviços</p></a>
+                                <a class="dropdown-item" href="servicos-finalizados.php"><p class="texto-preto">Serviços Finalizados</p></a>
                         </ul>
                     </div>
                     <li class="nav-item">
@@ -102,8 +102,8 @@ $email = $_SESSION["email"];
                             ?>
                             <ul class="list-unstyled mt-3 mb-1">
                                 <li><a class="btn btn-link btn-default" href="homepage.php">Visão Geral</a></li>
-                                <li><a class="btn btn-link btn-success" href="#">Buscar Serviços</a></li>
-                                <li><a class="btn btn-link btn-default" href="servicos-atribuidos.php">Meus Serviços</a></li>
+                                <li><a class="btn btn-link btn-default" href="servicos.php">Buscar Serviços</a></li>
+                                <li><a class="btn btn-link btn-success" href="#">Meus Serviços</a></li>
                                 <li><a class="btn btn-link btn-default" href="servicos-finalizados.php">Serviços Finalizados</a></li>
                             </ul>
                         </div>
@@ -116,7 +116,7 @@ $email = $_SESSION["email"];
                 
                 <?php
 
-                    $query = "SELECT t1.*, t2.*, t3.*, t5.idCliente, t5.nomeCliente, t6.*, t7.*, date_format(dataServico,'%d/%m/%Y') as dtServ, date_format(horaServico,'%H:%i') as hrServ
+                    $query = "SELECT t1.*, t2.*, t3.*, t5.idCliente, t5.nomeCliente, t6.*, t7.*,t8.*, date_format(dataServico,'%d/%m/%Y') as dtServ, date_format(horaServico,'%H:%i') as hrServ
                                 FROM Servicos t1
                                 JOIN Areas t2 ON (t1.idArea = t2.idArea)
                                 JOIN Areas_Prestadoras t3 ON (t2.idArea = t3.idArea)
@@ -124,7 +124,8 @@ $email = $_SESSION["email"];
                                 JOIN Clientes t5 ON (t1.idCliente = t5.idCliente)
                                 JOIN End_Clientes t6 ON (t5.idCliente = t6.idCliente)
                                 JOIN Especialidades t7 ON (t1.idEspecialidade = t7.idEspecialidade)
-                                WHERE t1.idPrestadora IS NULL AND t3.ativo = 1 AND t3.idPrestadora IS NOT NULL 
+                                JOIN TbStatus t8 ON (t1.idStatus = t8.idStatus)
+                                WHERE t1.idPrestadora = $dadosPrestadora[id] AND t3.ativo = 1 AND t3.idPrestadora IS NOT NULL AND t1.idStatus = 3 AND aprPrestadora = 0 AND aprCliente = 0
                                 AND t4.emailPrestadora = '$email' ORDER BY t1.dataCriacao DESC LIMIT 10";
                     
                     if($consulta = $conexao->query($query)){
@@ -132,13 +133,13 @@ $email = $_SESSION["email"];
                         while($servico = $consulta->fetch_assoc()){
                             echo "<div class='card no-transition'>
                                     <div class='card-body'>
-                                        <h6 class='texto-preto float-right'>#".$servico['idServico']."</h6>
+                                            <h6 class='texto-preto float-right'>#".$servico['idServico']."</h6>
                                             <h3 class='texto-preto font-weight-bold mb-2'>".utf8_encode($servico['nomeEspecialidade'])."</h3>
                                             <h6 class='float-left'>";
                             date_default_timezone_set('America/Campo_Grande'); 
                             $datetime1 = new DateTime($servico['dataCriacao']); // data/hora da criação
                             $datetime2 = new DateTime('now'); // data/hora atual
-                            $interval = $datetime1->diff($datetime2);
+                            $interval = $datetime1->diff($datetime2); 
                             if($interval->d == 0){
                                 if($interval->h == 0){
                                     if($interval->i == 1){
@@ -177,37 +178,39 @@ $email = $_SESSION["email"];
                                 }
                             }
                                     echo "</h6>
-                                            <h6 class='float-right'>".utf8_encode($servico['nomeArea'])."</h6>
-                                        <div class='clearfix'></div>
-                                            <hr>
-                                        <h6 class='badge badge-pill badge-warning font-weight-bold texto-preto float-left'><i class='fas fa-map-marker-alt'></i> ".utf8_encode($servico['bairro'])."</h6>
+                                        <h6 class='float-right'>".utf8_encode($servico['nomeArea'])."</h6>
+                                    <div class='clearfix'></div>
+                                             <hr>
+                                         <h6 class='badge badge-pill badge-warning font-weight-bold texto-preto float-left'><i class='fas fa-map-marker-alt'></i> ".utf8_encode($servico['bairro'])."</h6>
                                                     <h6 class='badge badge-pill badge-warning font-weight-bold texto-preto float-left ml-2'>R$: ".$servico['custoServico']."</h6>
-                                                    <div class='clearfix'></div>
-                                                    <h6 class='badge badge-pill badge-warning font-weight-bold texto-preto mt-2 mb-2'><i class='fas fa-user'></i> ".$servico['nomeCliente']."</h6>
                                             <div class='clearfix'></div>
+                                                    <h6 class='badge badge-pill badge-warning font-weight-bold texto-preto mt-2 mb-2'><i class='fas fa-user'>
+                                                    </i> ".$servico['nomeCliente']."</h6>
+                                                    <h6 class='font-weight-bold text-success float-right ml-2 mt-2'>".$servico['descricaoStatus']."</h6>
+                                                    <div class='clearfix'></div>
                                         <h6 class='badge badge-pill badge-warning font-weight-bold texto-preto float-left'><i class='far fa-calendar-alt'></i> ".$servico['dtServ']."</h6>
                                                     <h6 class='badge badge-pill badge-warning font-weight-bold texto-preto float-left ml-2'><i class='far fa-clock'></i> ".$servico['hrServ']."</h6>
                                             <div class='clearfix'></div>
-                                            <button class='btn btn-success btn-round texto-preto mt-2' data-toggle='collapse' 
-                                                href='#collapseExample".$servico['idServico']."' aria-expanded='false' aria-controls='collapseExample".$servico['idServico']."'>Ver mais
-                                                <i class='fas fa-image ml-2'></i>
+                                            <button class='btn btn-success btn-round texto-preto mt-2' data-toggle='collapse'
+                                                    href='#collapseExample".$servico['idServico']."' aria-expanded='false' aria-controls='collapseExample".$servico['idServico']."'>Ver mais<i class='fas fa-image ml-2'></i>
                                             </button>
                                             <div class='collapse' id='collapseExample".$servico['idServico']."'>
                                                     <div class='col-sm-10 col-md-10 mx-auto'>
-                                                        <p class='mb-2 mt-2 texto-preto font-weight-normal'>".utf8_encode($servico['descricaoServico'])."</p>
+                                                        <p class='mb-2 mt-2 texto-preto font-weight-normal'>
+                                                             ".utf8_encode($servico['descricaoServico'])."
+                                                        </p>
                                                     </div>
                                                     <form action='../../assets/php/prestadora/manipular-servico.php' method='POST'>
-
                                                     <input type='hidden' name='idServico' value='".$servico['idServico']."'>
-
                                             </div>
-                                            <button type='sumbit' name='btnServico' onClick='return ConfirmarAlteracao()' class='btn btn-success btn-round texto-preto float-right mt-2'>Aceitar Serviço</button>
-                                            </form>
-                                        </div>
-                                    </div>";
+                                            <button type='sumbit' name='btnConcluirServico' onClick='return ConfirmarAlteracao()' class='btn btn-success btn-round texto-preto float-right mt-2'>Finalizar Serviço</button>
+                                        </form>
+                                    </div>
+                                </div>";
                         }
                         $consulta->free();
                     }
+                    $conexao->close();
                 ?>
 
             <!-- fim da div serviços -->
@@ -256,14 +259,14 @@ $email = $_SESSION["email"];
 <script>
 
     function ConfirmarAlteracao(){		
-        if (confirm ("Deseja realmente aceitar o serviço selecionado?"))		
+        if (confirm ("Deseja realmente marcar o serviço como concluído?"))		
         return confirmacao();	
         else		
         return false;
         }
 
     function confirmacao() {
-        alert("Negocio fechado!!");
+        alert("Parabéns!! Falta pouco para você faturar!");
 }
 
 </script>
