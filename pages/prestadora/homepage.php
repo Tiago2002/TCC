@@ -21,6 +21,19 @@ $email = $_SESSION["email"];
     <link href="../../assets/css/bootstrap.min.css" rel="stylesheet" />
     <link href="../../assets/css/paper-kit.min.css" rel="stylesheet" />
     <link href="../../assets/css/estilo.css" rel="stylesheet" />
+
+    <style>
+    .icon-background{
+        color: #c0ffc0;
+    }
+    .icon-background-blue{
+        color: #0439a7; 
+    }
+    .icon-background-orange{
+        color: #ff9854;
+    }
+    </style>
+
 </head>
 
 <body>
@@ -73,17 +86,8 @@ $email = $_SESSION["email"];
     </nav>
     <!-- end navbar  -->
     <div class="wrapper">
-
-        <div class="content-center">
             <div class="container">
-                <div class="title-brand">
-                    <h1 class="title text-success text-uppercase font-weight-bold">Encontre um serviço</h1>
-                </div>
-                <h3 class="text-center font-weight-bold texto-preto mb-5">Escolha uma área de atuação em seu perfil e comece a ganhar dinheiro.</h3>
-            </div>
-
-            <div class="container">
-            <div class="row">
+                <div class="row">
 
             <!-- div img e menu lateral -->
                 <div class="col-md-3">
@@ -108,6 +112,7 @@ $email = $_SESSION["email"];
                                 }
                             ?>
                             <ul class="list-unstyled mt-3 mb-1">
+                                <li><a class="btn btn-link btn-success" href="homepage.php">Visão Geral</a></li>
                                 <li><a class="btn btn-link btn-default" href="servicos.php">Buscar Serviços</a></li>
                                 <li><a class="btn btn-link btn-default" href="servicos-atribuidos.php">Meus Serviços</a></li>
                                 <li><a class="btn btn-link btn-default" href="servicos-finalizados.php">Serviços Finalizados</a></li>
@@ -118,12 +123,79 @@ $email = $_SESSION["email"];
             <!-- fim da div img e menu lateral -->
 
             <!-- div serviços -->
-            <div class="col-md-7 bg-light p-3"></div>
+            <div class="col-md-9 bg-light p-4">
+            <div class="container">
+                <div class="title-brand">
+                    <h1 class="title text-success text-uppercase font-weight-bold">Encontre um serviço</h1>
+                </div>
+                <h3 class="text-center font-weight-bold texto-preto mb-5">Escolha uma área de atuação em seu perfil e comece a ganhar dinheiro.</h3>
+            </div>
+
+                <!-- div Indicadores -->
+                <?php
+
+                    $queryIndicadores = "SELECT count(idServico) AS totalServicos, round(avg(avaliaServico),2) AS mediaNota, sum(custoServico) AS totalGanhos FROM Servicos t1
+                                        LEFT JOIN Prestadoras t2 ON (t1.idPrestadora = t2.idPrestadora)
+                                        WHERE emailPrestadora = '$email' AND idStatus = 4 AND avaliaServico IS NOT NULL;";
+
+                    $consultaIndicadores = $conexao->query($queryIndicadores);
+                    $dadosIndicadores = (mysqli_fetch_assoc($consultaIndicadores));
+
+                    $media = $dadosIndicadores['mediaNota'] + 0; // transforma a variável em float
+                    
+                    if($dadosIndicadores['totalServicos'] > 0){
+                    
+                    echo "<div class='row'>
+                        <div class='col-md-4 mt-2 float-left'>
+                            <div class='card-body mb-1'>
+                                <h6 class='texto-preto'>Chamados Resolvidos</h6>
+                            </div>
+                            <div class='float-left'>
+                                <span class='fa-stack fa-2x'>
+                                    <i class='fa fa-circle fa-stack-2x icon-background-orange'></i>
+                                    <i class='texto-preto fas fa-toolbox fa-stack-1x'></i>
+                                </span>
+                            </div>
+                                <h1 class='texto-preto font-weight-bold mt-0'>".$dadosIndicadores['totalServicos']."</h1>
+                        </div>
+
+                        <div class='col-md-4 mt-2 float-left'>
+                        <div class='card-body mb-1'>
+                                <h6 class='texto-preto'>Nota Média</h6>
+                            </div>
+                            <div class='float-left'>
+                                <span class='fa-stack fa-2x'>
+                                    <i class='fa fa-circle fa-stack-2x icon-background-blue'></i>
+                                    <i class='fas fa-star text-warning fa-stack-1x'></i>
+                                </span>
+                            </div>
+                                <h1 class='texto-preto font-weight-bold mt-0'>".$media."</h1>
+                        </div>
+
+                        <div class='col-md-4 mt-2 float-left'>
+                        <div class='card-body mb-1'>
+                                <h6 class='texto-preto'>Ganhos Totais</h6>
+                            </div>
+                            <div class='float-left'>
+                                <span class='fa-stack fa-2x'>
+                                    <i class='fa fa-circle fa-stack-2x icon-background'></i>
+                                    <i class='texto-preto fas fa-dollar-sign fa-stack-1x'></i>
+                                </span>
+                            </div>
+                                <h1 class='texto-preto font-weight-bold mt-0'>".$dadosIndicadores['totalGanhos']."</h1>
+                            </div>
+                        </div>";
+                    }
+                    $conexao->close();    
+                ?>
+                    <!--  fim da div Indicadores  -->
+                
+            </div>
     
             <!-- fim da div serviços -->
 
-    <!-- Modal Bodies come here -->
-    <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+    <!-- Modal de Informação de Perfil -->
+    <!--<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
@@ -145,7 +217,7 @@ $email = $_SESSION["email"];
             </div>
         </div>
 
-        </div>
+        </div>-->
 
 </body>
 <!--   Core JS Files   -->

@@ -184,7 +184,7 @@ $email = $_SESSION["email"];
                                 <h6 class='badge badge-pill badge-warning font-weight-bold texto-preto float-left'><i class='fas fa-map-marker-alt'></i> ".utf8_encode($servico['bairro'])."</h6>
                                 <h6 class='badge badge-pill badge-warning font-weight-bold texto-preto float-left ml-2'>R$: ".$servico['custoServico']."</h6>
                             <div class='clearfix'></div>
-                                <h6 class='badge badge-pill badge-warning font-weight-bold texto-preto mt-2 mb-2'><i class='fas fa-user'></i>".$servico['nomeCliente']."</h6>";
+                                <h6 class='badge badge-pill badge-warning font-weight-bold texto-preto mt-2 mb-2'><i class='fas fa-user'></i> ".$servico['nomeCliente']."</h6>";
                             if($servico['avaliaServico'] != NULL){
                                 echo "<h6 class='font-weight-bold texto-preto float-right ml-2 mt-2'><i class='fas fa-star text-warning'></i> ".$servico['avaliaServico']."</h6>";
                             }
