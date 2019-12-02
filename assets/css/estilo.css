@@ -1,55 +1,47 @@
 .sec-servicos {
-  overflow: hidden;
-}
+  overflow: hidden; }
 
 .card-servico-feito {
   cursor: pointer;
-  background-color: #f9f9f9;
-}
+  background-color: #f9f9f9; }
 
 .card-estatistica {
   cursor: pointer;
-  background-color: #f9f9f9;
-}
-.card-estatistica span {
-  font-size: 30px;
-}
+  background-color: #f9f9f9; }
+  .card-estatistica span {
+    font-size: 30px; }
 
 .circle-loading {
   width: 50px;
   height: 50px;
-  border: solid 5px  #08db88;
-  border-top-color:  #000000;
+  border: solid 5px #34495e;
+  border-top-color: #000000;
   border-radius: 100px;
   -webkit-border-radius: 100px;
   -moz-border-radius: 100px;
   -ms-border-radius: 100px;
   -o-border-radius: 100px;
   animation: spin 1s infinite linear;
-  -webkit-animation: spin 1s infinite linear;
-}
+  -webkit-animation: spin 1s infinite linear; }
 
 @keyframes spin {
   100% {
-    transform: rotate(360deg);
-  }
-}
+    transform: rotate(360deg); } }
 .texto-preto {
-  color: #000000 !important;
-}
+  color: #000000 !important; }
 
-.border {
-  border: 0 none !important;
-  border-bottom: solid 1px #000000 !important;
-  border-radius: 0px;
-  -webkit-border-radius: 0px;
-  -moz-border-radius: 0px;
-  -ms-border-radius: 0px;
-  -o-border-radius: 0px;
-}
+.borda,
+input {
+  box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.5) inset !important;
+  border: 1px solid #b7b7b7 !important;
+  border-radius: 5px !important;
+  -webkit-border-radius: 5px !important;
+  -moz-border-radius: 5px !important;
+  -ms-border-radius: 5px !important;
+  -o-border-radius: 5px !important; }
 
-h6 {
-  color: #000000;
-}
+.page-header {
+  background-image: url("../../assets/img/imgFundo.jpg");
+  background-size: cover; }
 
 /*# sourceMappingURL=estilo.css.map */

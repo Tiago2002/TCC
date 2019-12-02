@@ -46,32 +46,32 @@ INSERT INTO Areas (nomeArea) value ('Instalações'); /* idArea = 4 */
 INSERT INTO Areas (nomeArea) value ('Montagem de Móveis'); /* idArea = 5 */
 
 /*INSERT - Tabela Especialidades*/
-INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Chuveiro Elétrico - instalação / troca',50,1);
-INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Disjuntor - Troca',40,1);
+INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Chuveiro Elétrico',50,1);
+INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Disjuntor',40,1);
 INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Instalação de canaleta',35,1);
-INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Interruptores embutidos - substituição / reparo',30,1);
-INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Luminária plafon - instalação / troca',25,1);
-INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Luminária pendente - instalação / troca',35,1);
-INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Resistência de chuveiro elétrico - instalação / troca',20,1);
-INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Ventilador de teto - instalação / substituição',140,1);
-INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Tomadas embutidas - substituição / reparo',35,1);
-INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Tomada externa com calha - instalação / troca',35,1);
+INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Interruptores embutidos',30,1);
+INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Luminária plafon',25,1);
+INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Luminária pendente',35,1);
+INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Resistência de chuveiro elétrico',20,1);
+INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Ventilador de teto',140,1);
+INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Tomadas embutidas',35,1);
+INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Tomada externa com calha',35,1);
 
-INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Chuveirinho higiênico - substituição / reparo',180,2);
-INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Descarga acoplada - substituição / reparo',90,2);
+INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Chuveirinho higiênico',180,2);
+INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Descarga acoplada',90,2);
 INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Desentupimento de pia',150,2);
 INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Ralo / Box entupido ',160,2);
 INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Fixação de cuba de pia ',180,2);
 INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Registro de pia pingando',55,2);
-INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Sifão - substituição / reparo',50,2);
-INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Torneira - substituição / reparo',55,2);
-INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Vaso Sanitário - substituição / reparo',190,2);
-INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Vazamento de descarga embutida - substituição / reparo',90,2);
+INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Sifão',50,2);
+INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Torneira',55,2);
+INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Vaso Sanitário',190,2);
+INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Vazamento de descarga embutida',90,2);
 
 INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Pintura epóxi - pintura de chão',29,3);
 INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Pintura Nova',25,3);
 INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Pintura de Fachadas',28,3);
-INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Pintura decorativa - revestimento / textura',35,3);
+INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('revestimento / textura',35,3);
 INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Pintura com desenho',40,3);
 
 INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Chuveiro',50,4);
@@ -82,7 +82,7 @@ INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) value
 INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Nichos',25,4);
 INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Antenas de TV',50,4);
 
-INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Armário - cozinha/banheiro',90,5); -- por módulo 
+INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Armário',90,5); -- por módulo 
 INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Beliche',130,5);
 INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Cadeira',60,5);
 INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Cama de casal',100,5);
@@ -90,7 +90,6 @@ INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) value
 INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Cômoda',85,5);
 INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Escrivaninha',120,5);
 INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Guarda-roupa',85,5); -- por módulo 
-INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Guarda-roupa - portas de correr',80,5); -- por módulo 
 INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Mesa',100,5);
 INSERT INTO Especialidades (nomeEspecialidade, custoEspecialidade, idArea) values ('Prateleira',27,5);
 

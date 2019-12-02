@@ -26,14 +26,13 @@
 
 <body>
 
-    <nav class="navbar navbar-expand-lg bg-dark mb-5">
-        <a href="../index.php" class="btn btn-success btn-round texto-preto ml-2">
-        <i class="fas fa-arrow-left mr-2"></i>Voltar</a>
+    <nav class="navbar navbar-expand-lg bg-primary mb-5">
+        <a href="../index.php" class="btn btn-warning btn-round ml-2">
+            <i class="fas fa-arrow-left mr-2"></i>Voltar</a>
     </nav>
 
     <div class="container">
         <div class="col-md-4 mx-auto">
-
             <div class="text-center mt-5 mb-5">
                 <h3 class="texto-preto font-weight-bold">
                     Entre com sua conta da D'elas.
@@ -43,9 +42,9 @@
             if(isset($_GET["tipo"])){
                 if($_GET["tipo"] == 0 || $_GET["tipo"] ==1){
                     if ($_GET["tipo"] == 0) {
-                        echo "<span class='mb-2 badge badge-pill badge-warning' data-container='body' data-toggle='popover' data-placement='top' data-content='Você será logado como Prestadora'>Entrando como Prestadora</span>";
+                        echo "<span class='mb-2 badge badge-pill badge-primary font-weight-bold p-2' data-container='body' data-toggle='popover' data-placement='top' data-content='Você será logado como Prestadora'>Entrando como Prestadora</span>";
                       } else {
-                        echo "<span class='mb-2 badge badge-pill badge-warning' data-container='body' data-toggle='popover' data-placement='top' data-content='Você será logado como Cliente'>Entrando como cliente</span>";
+                        echo "<span class='mb-2 badge badge-pill badge-primary font-weight-bold p-2' data-container='body' data-toggle='popover' data-placement='top' data-content='Você será logado como Cliente'>Entrando como cliente</span>";
                       }
                 }
                 else{
@@ -68,7 +67,7 @@
                 <div class="form-group">
                     <h6 class="texto-preto">Endereço de email</h6>
                     <div class="input-group">
-                        <input type="text" class="form-control border"<?php
+                        <input type="text" class="form-control" <?php
                         if ($_GET["tipo"] == 0) {
                             echo "id='emailLoginPrestadora'";
                         }else{
@@ -76,8 +75,8 @@
                         }
                         ?> name="txtEmail" placeholder="Endereço de email">
                     </div>
-                    <div class="alert alert-danger alerta-email mt-3" role="alert">
-                        <h6 class="mt-2">Insira um email válido</h6>
+                    <div class="alert alert-warning alerta-email mt-3" role="alert">
+                        <h6 class="mt-2 text-primary">Insira um email válido</h6>
                     </div>
                 </div>
 
@@ -90,20 +89,21 @@
                         }else{
                             echo "id='senhaLoginCliente'";
                         }
-                        ?> name="txtPassword"
-                            class="form-control border">
+                        ?> name="txtPassword" class="form-control">
                     </div>
                 </div>
-                <div class="alert alert-danger alerta-login" role="alert">
-                    <h6 class="mt-2">Email ou Senha incorretos</h6>
+                <div class="alert alert-warning alerta-login" role="alert">
+                    <h6 class="mt-2 text-primary">Email ou Senha incorretos</h6>
                 </div>
             </form>
-            <small>
-                <a href="" data-toggle="modal" data-target=".modal-recuperacao"
-                    class="btn btn-warning texto-preto h6">Esqueci minha senha</a>
-            </small>
-
-            <button class="btn btn-success btn-lg btn-block btn-round texto-preto mt-2 mb-3" <?php
+            <a href="" data-toggle="modal" data-target=".modal-recuperacao"
+                class="btn btn-primary h6 float-left">Esqueci minha senha</a>
+            <div class="float-right">
+                <h6 class="texto-preto">não tem conta ?</h6><a href="#" data-toggle="modal"
+                    data-target=".modal-cadastro" class="text-primary h6">Criar conta</a>
+            </div>
+            <div class="clearfix"></div>
+            <button class="btn btn-warning btn-lg btn-block mt-2 mb-3" <?php
                 if ($_GET["tipo"] == 0){
                     echo "id='btn-loginPrestadora'";
                 }else{
@@ -112,9 +112,6 @@
             ?>>
                 Entrar
             </button>
-
-            <h6 class="texto-preto">não tem conta ?</h6><a href="#" data-toggle="modal" data-target=".modal-cadastro"
-                class="text-success h6">Criar conta</a>
         </div>
 
     </div>
@@ -131,11 +128,11 @@
                 </div>
                 <div class="modal-footer">
                     <div class="left-side">
-                        <a href="register-page.php?tipo=0" class="btn btn-success btn-link">Para Trabalhar</a>
+                        <a href="register-page.php?tipo=0" class="btn btn-primary btn-link">Para Trabalhar</a>
                     </div>
                     <div class="divider"></div>
                     <div class="right-side">
-                        <a href="register-page.php?tipo=1" class="btn btn-success btn-link">Para solicitar
+                        <a href="register-page.php?tipo=1" class="btn btn-warning btn-link">Para solicitar
                             serviço</a>
                     </div>
                 </div>
@@ -154,11 +151,11 @@
                 </div>
                 <div class="modal-footer">
                     <div class="left-side">
-                        <a href="recuperar-senha.php?tipo=0" class="btn btn-success btn-link">Sou Trabalhadora</a>
+                        <a href="recuperar-senha.php?tipo=0" class="btn btn-primary btn-link">Sou Trabalhadora</a>
                     </div>
                     <div class="divider"></div>
                     <div class="right-side">
-                        <a href="recuperar-senha.php?tipo=1" class="btn btn-success btn-link">Sou Cliente</a>
+                        <a href="recuperar-senha.php?tipo=1" class="btn btn-warning btn-link">Sou Cliente</a>
                     </div>
                 </div>
             </div>

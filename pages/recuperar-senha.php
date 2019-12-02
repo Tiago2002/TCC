@@ -26,13 +26,13 @@
 
 <body>
 
-<nav class="navbar navbar-expand-lg bg-dark">
-        <a onclick="window.history.back()" class="btn btn-success btn-round texto-preto ml-2"><i
+<nav class="navbar navbar-expand-lg bg-primary">
+        <a onclick="window.history.back()" class="btn btn-warning text-white btn-round ml-2"><i
                 class="fas fa-arrow-left mr-2"></i>Voltar</a>
     </nav>
 
     <div class="container p-5 mt-5">
-        <h1 class="text-uppercase text-center texto-preto font-weight-bold">Alterar Senha</h1>
+        <h1 class="text-uppercase text-center text-primary font-weight-bold">Alterar Senha</h1>
 
         <div class="col-md-6 mt-3 mx-auto">
 
@@ -74,16 +74,16 @@
                 <h6>Confirme o email cadastrado</h6>
                 <div class="form-group">
                     <div class="input-group">
-                        <input type="text" class="form-control border" id="emailRecuperacao" name="txtEmail"
+                        <input type="text" class="form-control" id="emailRecuperacao" name="txtEmail"
                             placeholder="Insira o email cadastrado" required>
                     </div>
-                    <div class="alert alert-danger texto-preto alerta-email mt-3" role="alert">
+                    <div class="alert alert-warning text-primary alerta-email mt-3" role="alert">
                         <h6 class="mt-2">Insira um email válido</h6>
                     </div>
-                    <div class="alert alert-danger texto-preto alerta-reset mt-3" role="alert">
+                    <div class="alert alert-warning text-primary alerta-reset mt-3" role="alert">
                         <h6 class="mt-2" id="msg-alerta-reset">Email não está cadastradado</h6>
                     </div>
-                    <div class="alert alert-success texto-preto alerta-enviado mt-3" role="alert">
+                    <div class="alert alert-warning text-primary alerta-enviado mt-3" role="alert">
                         <h6 class="mt-2">Verifique seu email para redefinir sua senha</h6>
                     </div>
                 </div>
@@ -91,7 +91,7 @@
 
             <div class="circle-loading container mb-3"></div>
 
-            <button class="btn btn-success btn-lg btn-block btn-round texto-preto mt-3 mb-3"<?php
+            <button class="btn btn-warning btn-lg btn-block mt-3 mb-3"<?php
                 if ($_GET["tipo"] == 0) {
                     echo "id='btn-recuperacaoPrestadora'";
                 } else {

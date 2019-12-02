@@ -1,16 +1,19 @@
-.texto-preto{
+.texto-preto {
     color: #000000 !important;
 }
-.border{
-    border: 0 none !important;
-    border-bottom: solid 1px #000000 !important;
-    border-radius: 0px;
-    -webkit-border-radius: 0px;
-    -moz-border-radius: 0px;
-    -ms-border-radius: 0px;
-    -o-border-radius: 0px;
+
+.borda,
+input {
+    box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.5) inset !important;
+    border: 1px solid #b7b7b7 !important;
+    border-radius: 5px !important;
+    -webkit-border-radius: 5px !important;
+    -moz-border-radius: 5px !important;
+    -ms-border-radius: 5px !important;
+    -o-border-radius: 5px !important;
 }
 
-h6{
-    color: #000000;
+.page-header {
+    background-image: url("../../assets/img/imgFundo.jpg");
+    background-size: cover;
 }

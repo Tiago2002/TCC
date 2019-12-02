@@ -11,67 +11,66 @@ $email = $_SESSION["email"];
 
 <head>
     <title>Delas, Serviços Rápidos</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <!--     Fonts     -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
-    <!-- CSS Files -->
-    <link href="../../assets/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="../../assets/css/paper-kit.min.css" rel="stylesheet" />
-    <link href="../../assets/css/estilo.css" rel="stylesheet" />
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+         name='viewport' />
+      <!--     Fonts and icons     -->
+      <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+      <!-- CSS Files -->
+      <link href="../../assets/css/bootstrap.min.css" rel="stylesheet" />
+      <link href="../../assets/css/paper-kit.css" rel="stylesheet" />
+      <link rel="stylesheet" href="../../assets/css/estilo.css">
+   </head>
 </head>
 
 <body>
     <!--    navbar come here   -->
-    <nav class="navbar navbar-expand-lg bg-dark">
-        <div class="container">
-            <div class="navbar-translate">
-                <a class="navbar-brand" href="homepage.php">delas</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navBar"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-bar bar1"></span>
-                    <span class="navbar-toggler-bar bar2"></span>
-                    <span class="navbar-toggler-bar bar3"></span>
-                </button>
-            </div>
-            <div class="collapse navbar-collapse" id="navBar">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">
-                            <i class="fas fa-question-circle"></i>
-                            <p>Ajuda</p>
-                        </a>
-                    </li>
-                    
-                    <div class="nav-item dropdown">
+    <nav class="navbar navbar-expand-lg bg-primary">
+    <div class="container">
+        <div class="navbar-translate">
+            <a class="navbar-brand" href="homepage.php">delas</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#example-navbar-primary" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-bar bar1"></span>
+                <span class="navbar-toggler-bar bar2"></span>
+                <span class="navbar-toggler-bar bar3"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="example-navbar-primary">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-question-circle"></i>
+                        <p>Ajuda</p>
+                    </a>
+                </li>
+                <div class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">
                             <i class="fas fa-cash-register" aria-hidden="true"></i><p> Serviços</p>
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-right dropdown-success">
-                                <a class="dropdown-item" href="homepage.php"><p class="texto-preto">Visão Geral</p></a>
-                                <a class="dropdown-item" href="servicos.php"><p class="texto-preto">Buscar Serviços</p></a>
-                                <a class="dropdown-item" href="#"><p class="texto-preto">Meus Serviços</p></a>
-                                <a class="dropdown-item" href="servicos-finalizados.php"><p class="texto-preto">Serviços Finalizados</p></a>
+                        <ul class="dropdown-menu dropdown-menu-right dropdown-primary">
+                        <a class="dropdown-item" href="homepage.php"><p class="text-warning h6">Visão Geral</p></a>
+                                <a class="dropdown-item" href="servicos.php"><p class="text-warning h6">Buscar Serviços</p></a>
+                                <a class="dropdown-item" href="servicos-atribuidos.php"><p class="text-warning h6">Meus Serviços</p></a>
+                                <a class="dropdown-item" href="servicos-finalizados.php"><p class="text-warning h6">Serviços Finalizados</p></a>
                         </ul>
                     </div>
-                    <li class="nav-item">
-                        <a class="nav-link" href="profile-page.php">
-                            <i class="fas fa-female"></i>
-                            <p>Meu Perfil</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../../assets/php/scripts/logout.php">
-                            <i class="fas fa-sign-out-alt"></i>
-                            <p>Sair</p>
-                        </a>
-                    </li>
-                </ul>
-            </div>
+                <li class="nav-item">
+                    <a class="nav-link" href="profile-page.php">
+                        <i class="fas fa-female"></i>
+                        <p>Meu Perfil</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../../assets/php/scripts/logout.php">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <p>Sair</p>
+                    </a>
+                </li>
+            </ul>
         </div>
-    </nav>
+    </div>
+</nav>
     <!-- end navbar  -->
 
     <div class="wrapper">
@@ -103,7 +102,7 @@ $email = $_SESSION["email"];
                             <ul class="list-unstyled mt-3 mb-1">
                                 <li><a class="btn btn-link btn-default" href="homepage.php">Visão Geral</a></li>
                                 <li><a class="btn btn-link btn-default" href="servicos.php">Buscar Serviços</a></li>
-                                <li><a class="btn btn-link btn-success" href="#">Meus Serviços</a></li>
+                                <li><a class="btn btn-link btn-warning" href="#">Meus Serviços</a></li>
                                 <li><a class="btn btn-link btn-default" href="servicos-finalizados.php">Serviços Finalizados</a></li>
                             </ul>
                         </div>
@@ -191,7 +190,7 @@ $email = $_SESSION["email"];
                                         <h6 class='badge badge-pill badge-warning font-weight-bold texto-preto float-left'><i class='far fa-calendar-alt'></i> ".$servico['dtServ']."</h6>
                                                     <h6 class='badge badge-pill badge-warning font-weight-bold texto-preto float-left ml-2'><i class='far fa-clock'></i> ".$servico['hrServ']."</h6>
                                             <div class='clearfix'></div>
-                                            <button class='btn btn-success btn-round texto-preto mt-2' data-toggle='collapse'
+                                            <button class='btn btn-primary btn-round mt-2' data-toggle='collapse'
                                                     href='#collapseExample".$servico['idServico']."' aria-expanded='false' aria-controls='collapseExample".$servico['idServico']."'>Ver mais<i class='fas fa-image ml-2'></i>
                                             </button>
                                             <div class='collapse' id='collapseExample".$servico['idServico']."'>
@@ -203,7 +202,7 @@ $email = $_SESSION["email"];
                                                     <form action='../../assets/php/prestadora/manipular-servico.php' method='POST'>
                                                     <input type='hidden' name='idServico' value='".$servico['idServico']."'>
                                             </div>
-                                            <button type='sumbit' name='btnConcluirServico' onClick='return ConfirmarAlteracao()' class='btn btn-success btn-round texto-preto float-right mt-2'>Finalizar Serviço</button>
+                                            <button type='sumbit' name='btnConcluirServico' onClick='return ConfirmarAlteracao()' class='btn btn-primary float-right mt-2'>Finalizar Serviço</button>
                                         </form>
                                     </div>
                                 </div>";
