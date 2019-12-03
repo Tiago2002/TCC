@@ -1,7 +1,7 @@
 
 
 <?php
-   include_once("../../assets/php/scripts/logincheck.php");
+   include_once("../../assets/php/scripts/logincheck-cliente.php");
    
    function criarConteudoCardServico($id, $icone)
    {

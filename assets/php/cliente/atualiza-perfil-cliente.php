@@ -1,5 +1,5 @@
 <?php
-	require_once("../scripts/logincheck.php");
+	require_once("../scripts/logincheck-cliente.php");
 
 	require("../scripts/conexao.php");
 

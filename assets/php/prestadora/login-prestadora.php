@@ -12,6 +12,7 @@ if (isset($_POST["txtEmail"]) || isset($_POST["txtPassword"])){
 		if(mysqli_fetch_row($data)){
 			$_SESSION["email"] = $email;
 			$_SESSION["loggedIn"] = 1;
+			$_SESSION["type"] = 1;
 			header("Location: ../../../pages/prestadora/homepage.php");
 			exit();
 		}
