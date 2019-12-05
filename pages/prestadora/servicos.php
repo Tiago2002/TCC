@@ -198,7 +198,10 @@
                                </button>
                                <div class='collapse' id='collapseExample".$servico['idServico']."'>
                                        <div class='col-sm-10 col-md-10 mx-auto'>
-                                           <p class='mb-2 mt-2 texto-preto font-weight-normal'>".utf8_encode($servico['descricaoServico'])."</p>
+                                       <div class='text-center mt-4'>
+                                          <img class='img-thumbnail img-responsive' src='../../assets".$servico['caminhoFoto']."'/>
+                                          </div>
+                                           <p class='mb-2 mt-2 texto-preto font-weight-normal borda p-2 text-justify'>".utf8_encode($servico['descricaoServico'])."</p>
                                        </div>
                                        <form action='../../assets/php/prestadora/manipular-servico.php' method='POST'>
 

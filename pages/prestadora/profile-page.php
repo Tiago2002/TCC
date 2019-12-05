@@ -595,7 +595,7 @@
                         <div class="form-group">
                            <label class="text-warning font-weight-bold" for="selectBanco">Banco</label>
                            <select class="form-control borda" name="selectBanco" id="selectBanco">
-                              <option value=""> -- Selecione o Banco -- </option>
+                              <option value="0"> -- Selecione o Banco -- </option>
                               <?php
                                  include("../../assets/php/scripts/conexao.php");
                                  
@@ -629,13 +629,13 @@
                         <div class="col-md-6">
                            <div class="form-group">
                               <label class="form-control-label text-warning font-weight-bold" for="logradouro">Agência</label>
-                              <input type="text" id="agenciaBanco" name="txtAgBanco" class="form-control" placeholder="1234" value="<?php echo $dados['agenciaBanco']; ?>" type="text">
+                              <input type="text" id="agenciaBanco" name="txtAgBanco" class="form-control" placeholder="1234" value="<?php echo $dados['agenciaBanco']; ?>" type="text" required/>
                            </div>
                         </div>
                         <div class="col-md-6">
                            <div class="form-group">
                               <label class="form-control-label text-warning font-weight-bold" for="bairro">Conta</label>
-                              <input type="text" id="contaBanco" name="txtContaBanco" class="form-control" placeholder="123456-7" value="<?php echo $dados['contaBanco']; ?>" type="text">
+                              <input type="text" id="contaBanco" name="txtContaBanco" class="form-control" placeholder="123456-7" value="<?php echo $dados['contaBanco']; ?>" type="text" required/>
                            </div>
                         </div>
                      </div>

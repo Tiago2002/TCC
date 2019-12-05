@@ -86,6 +86,8 @@
 			} else {
 				echo "Erro de atualização: " . mysqli_error($conexao);
 			}
+
+		if($_POST['opcao'] != NULL){
 		
 		foreach($_POST['opcao'] as $_op){
 			$sqlUpdateAtivo = "UPDATE Areas_Prestadoras SET ativo = 1 WHERE idPrestadora = $id AND idArea = $_op";
@@ -95,13 +97,16 @@
 				header("Location: ../../../pages/prestadora/profile-page.php");
 				} else {
 				echo "Erro de atualização: " . mysqli_error($conexao);
-				}	
-
+				}
+			}	
 		}
+		header("Location: ../../../pages/prestadora/profile-page.php");
 		exit();
 	}
 
 	else if(isset($_POST['btnDadosBancarios'])){
+
+		if(($_POST['selectBanco']) != 0){
 
 		$idBanco = $conexao->real_escape_string($_POST["selectBanco"]);
 		$agenciaBanco = $conexao->real_escape_string($_POST["txtAgBanco"]);
@@ -115,6 +120,8 @@
 			} else {
 			echo "Erro de atualização: " . mysqli_error($conexao);
 			}
+		}
+		header("Location: ../../../pages/prestadora/profile-page.php");
 		exit();
 	}
 

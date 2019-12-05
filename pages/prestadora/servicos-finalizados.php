@@ -199,15 +199,20 @@
                              href='#collapseExample".$servico['idServico']."' aria-expanded='false' aria-controls='collapseExample".$servico['idServico']."'>Ver mais<i class='fas fa-image ml-2'></i>
                              </button>
                              <div class='collapse' id='collapseExample".$servico['idServico']."'>
-                                     <div class='col-sm-10 col-md-10 mx-auto'>
-                                         <p class='mb-2 mt-2 texto-preto font-weight-normal'>"
-                                             .utf8_encode($servico['descricaoServico'])."
-                                         </p>
-                                     </div>
-         
-                                     <input type='hidden' name='idServico' value='".$servico['idServico']."'>
-         
-                             </div>";
+                             <div class='col-sm-10 col-md-10 mx-auto'>
+                                 <div class='text-center mt-4'>
+                                       <img class='img-thumbnail img-responsive' src='../../assets".$servico['caminhoFoto']."'/>
+                                 </div>
+                                    <h6 class='mb-2 mt-2 texto-preto borda p-2 text-justify'>".utf8_encode($servico['logradouro']).", ".$servico['numero']."<br />";
+                                       if($servico['complemento'] != NULL){
+                                          echo $servico['complemento']."<br />";
+                                       }
+                                       echo $servico['bairro'].", ".utf8_encode($servico['localidade'])." - ".$servico['uf']."<br />
+                                       CEP: ".$servico['CEP']."
+                                    </h6>
+                                    <p class='mb-2 mt-2 texto-preto font-weight-normal borda p-2 text-justify'>".utf8_encode($servico['descricaoServico'])."</p>
+                              </div>
+                           </div>";
                              if($servico['aprCliente'] == 0){
                                  echo "<h6 class='badge badge-danger font-weight-bold float-right mt-3 p-2'>Aguardando Confirmação da Cliente</h6>";
                              }
