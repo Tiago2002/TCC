@@ -47,12 +47,12 @@
             </div>
             <div class="collapse navbar-collapse" id="example-navbar-primary">
                <ul class="navbar-nav ml-auto">
-                  <li class="nav-item active">
+                  <!--<li class="nav-item active">
                      <a class="nav-link" href="#">
                         <i class="fas fa-question-circle"></i>
                         <p>Ajuda</p>
                      </a>
-                  </li>
+                  </li>-->
                   <div class="nav-item dropdown">
                      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">
                         <i class="fas fa-cash-register" aria-hidden="true"></i>

@@ -1,8 +1,17 @@
-
-
 <?php
    include_once("../../assets/php/scripts/logincheck-cliente.php");
-   ?>
+
+   include_once("../../assets/php/scripts/conexao.php");
+   
+   $email = $_SESSION["email"];
+
+   $queryCliente = "SELECT idCliente FROM Clientes WHERE emailCliente = '$email'";
+   $consultaCliente = $conexao->query($queryCliente);
+   $dadosCliente = mysqli_fetch_assoc($consultaCliente);
+
+   $idCliente = $dadosCliente['idCliente'];
+
+?>
 <!doctype html>
 <html lang="pt-br">
    <head>
@@ -24,7 +33,7 @@
       <nav class="navbar navbar-expand-lg bg-primary">
          <div class="container">
             <div class="navbar-translate">
-               <a class="navbar-brand" href="dashboard.php">delas</a>
+               <a class="navbar-brand" href="homepage.php">delas</a>
                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#example-navbar-primary" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                <span class="navbar-toggler-bar bar1"></span>
                <span class="navbar-toggler-bar bar2"></span>
@@ -39,12 +48,12 @@
                         <p>Solicitar um serviço</p>
                      </a>
                   </li>
-                  <li class="nav-item active">
+                  <!--<li class="nav-item active">
                      <a class="nav-link" href="#">
                         <i class="fas fa-question-circle"></i>
                         <p>Ajuda</p>
                      </a>
-                  </li>
+                  </li>-->
                   <li class="nav-item">
                      <a class="nav-link" href="services-page.php">
                      <i class="fas fa-receipt"></i>
@@ -70,115 +79,90 @@
       <!-- end navbar  -->
       <div class="container-fluid mt-5">
          <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-12">
                <div class="card no-transition">
                   <div class="card-header bg-primary">
-                     <h3 class="text-center text-white font-weight-bold">seus servicos</h3>
+                     <h3 class="text-center text-white font-weight-bold">Seus Serviços</h3>
                   </div>
+                  <div class="container">
                   <div class="card-body">
-                     <div class="dropdown">
-                        <button class="mb-3 btn btn-warning btn-round" type="button"
-                           id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-filter"></i>
-                        Filtrar
-                        </button>
-                        <div class="dropdown-menu bg-primary" aria-labelledby="dropdownMenuButton">
-                           <a class="dropdown-item text-warning font-weight-bold" href="#">Filtro1</a>
-                           <a class="dropdown-item text-warning font-weight-bold" href="#">Filtro2</a>
-                           <a class="dropdown-item text-warning font-weight-bold" href="#">Filtro3</a>
-                        </div>
-                     </div>
                      <div class="row">
-                        <div class="col-md-6">
-                           <div class="card">
-                           <div class="card-header bg-primary">
-                           <button type="button" class="btn btn-warning">reclamar</button>
-                           </div>
-                              <div class="card-body mt-n4">
-                                 <h4 class="text-primary font-weight-normal">21 Setembro 2019, 10:40</h4>
-                                 <h5 class="text-warning font-weight-bold">R$ 300,00</h5>
-                                 <h6 class="text-primary">Bairro: Jardim Iva</h6>
-                                 <h6 class="text-primary">Status: realizado</h6>
-                              </div>
-                           </div>
+
+                     <?php
+
+                     $queryServico = "SELECT t4.*, nomePrestadora, idServico, date_format(dataServico,'%d/%m/%Y') as dataServico, 
+                     date_format(horaServico,'%H:%i') as horaServico, t1.idStatus, t2.idStatus, t2.descricaoStatus, custoServico, 
+                     aprPrestadora, aprCliente, avaliaServico, t1.idPrestadora as prestadora, t5.nomeArea as nomeArea, t6.nomeEspecialidade as nomeEspecialidade 
+                     FROM Servicos as t1 
+                     INNER JOIN TbStatus as t2 ON (t1.idStatus = t2.idStatus)
+                     LEFT JOIN Prestadoras as t3 ON (t1.idPrestadora = t3.idPrestadora)
+                     LEFT JOIN End_Clientes as t4 ON (t1.idEnd_Cliente = t4.idEnd_Cliente)
+                     LEFT JOIN Areas as t5 ON (t1.idArea = t5.idArea)
+                     LEFT JOIN Especialidades as t6 ON (t1.idEspecialidade = t6.idEspecialidade)
+                     WHERE t1.idCliente = '$idCliente' ORDER BY t1.dataServico DESC";
+
+                     $consultaServico = $conexao->query($queryServico);
+
+                     while($dadosServico = mysqli_fetch_assoc($consultaServico)){
+                        echo "<div class='col-md-6'>
+                        <div class='card no-transition'>
+                        <div class='card-header bg-primary'>";
+                        if($dadosServico['idStatus'] == 1){
+                           
+                           echo "<label class='badge badge-pill badge-warning h6'>Pendente</label>";
+                           echo "<form method='POST' action='../../assets/php/cliente/cancelarServico.php' class='form-inline'>
+                           <input name='idServico' type='hidden' value='". $dadosServico['idServico'] ."' required/>
+                           <button type='submit' class='btn btn-danger mb-2'>Cancelar Serviço</button>
+                        </form>";
+                        }
+                        else if ($dadosServico['idStatus'] == 2){
+                           echo "<label class='badge badge-pill badge-warning h6 mt-2'>Aprovado</label>";
+                           echo "<form method='POST' action='../../assets/php/cliente/cancelarServico.php' class='form-inline float-right'>
+                           <input name='idServico' type='hidden' value='". $dadosServico['idServico'] ."' required/>
+                           <button type='submit' class='btn btn-danger mb-2'>Cancelar Serviço</button>
+                        </form>";
+                        }
+                        else if($dadosServico['idStatus'] == 3){
+                           echo "<label class='badge badge-pill badge-warning h6 mt-2'>Agendado</label>";
+                           echo "<form method='POST' action='../../assets/php/cliente/cancelarServico.php' class='form-inline float-right'>
+                           <input name='idServico' type='hidden' value='". $dadosServico['idServico'] ."' required/>
+                           <button type='submit' class='btn btn-danger mb-2'>Cancelar Serviço</button>
+                        </form>";
+                        }
+                        else if($dadosServico['idStatus'] == 4){
+                           if($dadosServico['aprCliente'] ==  0){
+                           echo "<label class='badge badge-pill badge-success h6 mt-2'>Concluído</label>";
+                           echo "<form method='POST' action='../../assets/php/cliente/avaliarServico.php' class='form-inline float-right'>
+                           <input name='numAvaliacao' type='number' max='10' min='0' class='form-control mb-2 mr-sm-2' placeholder='Avalie o serviço' required>
+                           <input name='idServico' type='hidden' value='". $dadosServico['idServico'] ."' required/>
+                           <button type='submit' class='btn btn-warning mb-2'>Salvar</button>
+                        </form>";
+                           } else {
+                              echo "<label class='badge badge-pill badge-success h6 mt-2 mb-2'>Concluído</label>";
+                           }
+                        }
+                        else if($dadosServico['idStatus'] == 5){
+                           echo "<label class='badge badge-pill badge-danger h6 mt-2 mb-2'>Cancelado</label>";
+                        }
+                        echo "</div>
+                           <div class='card-body mt-n4'>
+                              <h6 class='text-primary mt-2 text-right'>#". $dadosServico['idServico'] ."</h6>
+                              <h4 class='text-primary font-weight-bold mt-2'>". utf8_encode($dadosServico['nomeArea']) ."</h4>
+                              <h4 class='text-primary font-weight-normal mt-2'>". utf8_encode($dadosServico['nomeEspecialidade']) ."</h4>
+                              <h4 class='text-primary font-weight-normal mt-2'>". $dadosServico['dataServico'] .", ". $dadosServico['horaServico'] ."</h4>
+                              <h5 class='text-warning font-weight-bold'>R$ ". $dadosServico['custoServico'] ."</h5>";
+                           if($dadosServico['prestadora'] != NULL){
+                              echo "<h6 class='text-primary'>Prestadora: ". $dadosServico['nomePrestadora'] ."</h6>";
+                           }
+                           if($dadosServico['avaliaServico'] != NULL){
+                              echo "<h5 class='text-primary font-weight-bold float-right'><i class='fas fa-star text-warning'></i> ". $dadosServico['avaliaServico'] ."</h5>";
+                           }   
+                           echo "</div>
                         </div>
-                        <div class="col-md-6">
-                           <div class="card">
-                           <div class="card-header bg-primary">
-                           <button type="button" class="btn btn-warning">reclamar</button>
-                           </div>
-                              <div class="card-body mt-n4">
-                                 <h4 class="text-primary font-weight-normal">21 Setembro 2019, 10:40</h4>
-                                 <h5 class="text-warning font-weight-bold">R$ 300,00</h5>
-                                 <h6 class="text-primary">Bairro: Jardim Iva</h6>
-                                 <h6 class="text-primary">Status: realizado</h6>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="col-md-6">
-                           <div class="card">
-                           <div class="card-header bg-primary">
-                           <button type="button" class="btn btn-warning">reclamar</button>
-                           </div>
-                              <div class="card-body mt-n4">
-                                 <h4 class="text-primary font-weight-normal">21 Setembro 2019, 10:40</h4>
-                                 <h5 class="text-warning font-weight-bold">R$ 300,00</h5>
-                                 <h6 class="text-primary">Bairro: Jardim Iva</h6>
-                                 <h6 class="text-primary">Status: realizado</h6>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="col-md-6">
-                           <div class="card">
-                           <div class="card-header bg-primary">
-                           <button type="button" class="btn btn-warning">reclamar</button>
-                           </div>
-                              <div class="card-body mt-n4">
-                                 <h4 class="text-primary font-weight-normal">21 Setembro 2019, 10:40</h4>
-                                 <h5 class="text-warning font-weight-bold">R$ 300,00</h5>
-                                 <h6 class="text-primary">Bairro: Jardim Iva</h6>
-                                 <h6 class="text-primary">Status: realizado</h6>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="col-md-6">
-                           <div class="card">
-                           <div class="card-header bg-primary">
-                           <button type="button" class="btn btn-warning">reclamar</button>
-                           </div>
-                              <div class="card-body mt-n4">
-                                 <h4 class="text-primary font-weight-normal">21 Setembro 2019, 10:40</h4>
-                                 <h5 class="text-warning font-weight-bold">R$ 300,00</h5>
-                                 <h6 class="text-primary">Bairro: Jardim Iva</h6>
-                                 <h6 class="text-primary">Status: realizado</h6>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="col-md-6">
-                           <div class="card">
-                           <div class="card-header bg-primary">
-                           <button type="button" class="btn btn-warning">reclamar</button>
-                           </div>
-                              <div class="card-body mt-n4">
-                                 <h4 class="text-primary font-weight-normal">21 Setembro 2019, 10:40</h4>
-                                 <h5 class="text-warning font-weight-bold">R$ 300,00</h5>
-                                 <h6 class="text-primary">Bairro: Jardim Iva</h6>
-                                 <h6 class="text-primary">Status: realizado</h6>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="col-md-6">
-                           <div class="card">
-                           <div class="card-header bg-primary">
-                           <button type="button" class="btn btn-warning">reclamar</button>
-                           </div>
-                              <div class="card-body mt-n4">
-                                 <h4 class="text-primary font-weight-normal">21 Setembro 2019, 10:40</h4>
-                                 <h5 class="text-warning font-weight-bold">R$ 300,00</h5>
-                                 <h6 class="text-primary">Bairro: Jardim Iva</h6>
-                                 <h6 class="text-primary">Status: realizado</h6>
-                              </div>
-                           </div>
+                     </div>";
+                     }
+
+                     ?>
                         </div>
                      </div>
                   </div>

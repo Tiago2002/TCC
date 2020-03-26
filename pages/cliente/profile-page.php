@@ -36,7 +36,7 @@
       <nav class="navbar navbar-expand-lg bg-primary nav-down">
          <div class="container">
             <div class="navbar-translate">
-               <a class="navbar-brand" href="dashboard.php">delas</a>
+               <a class="navbar-brand" href="homepage.php">delas</a>
                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#example-navbar-primary" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                <span class="navbar-toggler-bar bar1"></span>
                <span class="navbar-toggler-bar bar2"></span>
@@ -51,12 +51,12 @@
                         <p>Solicitar um serviço</p>
                      </a>
                   </li>
-                  <li class="nav-item active">
+                  <!--<li class="nav-item active">
                      <a class="nav-link" href="#">
                         <i class="fas fa-question-circle"></i>
                         <p>Ajuda</p>
                      </a>
-                  </li>
+                  </li>-->
                   <li class="nav-item">
                      <a class="nav-link" href="services-page.php">
                      <i class="fas fa-receipt"></i>

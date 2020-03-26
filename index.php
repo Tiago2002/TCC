@@ -22,7 +22,7 @@
          <div class="container">
             <div class="navbar-translate">
                <a class="navbar-brand text-white"  rel="tooltip"
-                  title="Coded by Creative Tim" data-placement="bottom" target="_blank">
+                  title="Delas &copy;" data-placement="bottom" target="_blank">
                Delas
                </a>
                <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse"
@@ -54,7 +54,7 @@
             </div>
          </div>
       </div>
-      <div class="main" id="sobre">
+      <footer class="main" id="sobre">
       <div class="section text-center">
          <div class="container">
             <div class="row">
@@ -111,26 +111,23 @@
             </div>
          </div>
       </div>
-      <div class="section section-dark text-center">
+      <footer class="section section-dark text-center pb-4">
          <div class="container">
             <h2 class="title text-warning font-weight-bold">Nossa Equipe</h2>
             <div class="row">
                <div class="card-deck">
                   <div class="col-md-3">
                      <div class="card card-plain">
-                        <div class="card">
+                        <div class="card no-transition">
                            <img src="assets/img/eduardo.jpg" alt="Eduardo Belisia">
                         </div>
                         <div class="card-body">
                            <h4 class="card-title text-warning font-weight-normal mb-2">Eduardo Belisia</h4>
                            <h6 class="card-category">Desenvolvedor</h6>
-                           <p class="card-description text-center card-footer">
-                              breve resumo
-                           </p>
                         </div>
                         <div class="card-footer text-center">
                            <a href="https://github.com/ebelisia" target="_blank" class="btn btn-just-icon btn-lg btn-warning text-primary mb-3"><i
-                              class="fab fa-github"></i></a>
+                              class="fab fa-github text-primary"></i></a>
                            <a href="https://www.linkedin.com/in/eduardo-belisia-681596185" target="_blank" class="btn btn-just-icon btn-lg btn-warning text-primary mb-3"><i
                               class="fab fa-linkedin"></i></a>
                         </div>
@@ -138,19 +135,16 @@
                   </div>
                   <div class="col-md-3">
                      <div class="card card-plain">
-                        <div class="card">
+                        <div class="card no-transition">
                            <img src="./assets/img/fernando.jpg " alt="Fernando Lião">
                         </div>
                         <div class="card-body">
                            <h4 class="card-title text-warning font-weight-normal mb-2">Fernando Lião</h4>
                            <h6 class="card-category">Desenvolvedor</h6>
-                           <p class="card-description text-center card-footer">
-                           breve resumo
-                           </p>
                         </div>
                         <div class="card-footer text-center">
                            <a href="#" target="_blank" class="btn btn-just-icon btn-lg btn-warning text-primary mb-3"><i
-                              class="fab fa-github"></i></a>
+                              class="fab fa-github text-primary"></i></a>
                            <a href="#" target="_blank" class="btn btn-just-icon btn-lg btn-warning text-primary mb-3"><i
                               class="fab fa-linkedin"></i></a>
                         </div>
@@ -158,19 +152,16 @@
                   </div>
                   <div class="col-md-3">
                      <div class="card card-plain">
-                        <div class="card">
+                        <div class="card no-transition">
                            <img src="assets/img/chinaglia.jpeg" alt="Gabriel Chinaglia">
                         </div>
                         <div class="card-body">
                            <h4 class="card-title text-warning font-weight-normal mb-2">Gabriel Chinaglia</h4>
                            <h6 class="card-category">Desenvolvedor</h6>
-                           <p class="card-description text-center card-footer">
-                              breve resumo
-                           </p>
                         </div>
                         <div class="card-footer text-center">
                            <a href="https://github.com/gabrielchinaglia" target="_blank" class="btn btn-just-icon btn-lg btn-warning text-primary mb-3"><i
-                              class="fab fa-github"></i></a>
+                              class="fab fa-github text-primary"></i></a>
                            <a href="https://www.linkedin.com/in/gabriel-chinaglia-bucci" target="_blank" class="btn btn-just-icon btn-lg btn-warning text-primary mb-3"><i
                               class="fab fa-linkedin"></i></a>
                         </div>
@@ -178,19 +169,16 @@
                   </div>
                   <div class="col-md-3">
                      <div class="card card-plain">
-                        <div class="card">
+                        <div class="card no-transition">
                            <img src="assets/img/tiago.jpeg" alt="Tiago Matos">
                         </div>
                         <div class="card-body">
                            <h4 class="card-title text-warning font-weight-normal mb-2">Tiago Matos</h4>
                            <h6 class="card-category">Desenvolvedor</h6>
-                           <p class="card-description text-center card-footer">
-                              breve resumo
-                           </p>
                         </div>
                         <div class="card-footer text-center">
-                           <a href="#" target="_blank" class="btn btn-just-icon btn-lg btn-warning text-primary mb-3"><i
-                              class="fab fa-github"></i></a>
+                           <a href="https://github.com/Tiago2002" target="_blank" class="btn btn-just-icon btn-lg btn-warning text-primary mb-3"><i
+                              class="fab fa-github text-primary"></i></a>
                            <a href="https://www.linkedin.com/in/tiago-matos-dos-santos" target="_blank" class="btn btn-just-icon btn-lg btn-warning text-primary mb-3"><i
                               class="fab fa-linkedin"></i></a>
                         </div>
@@ -199,22 +187,24 @@
                </div>
             </div>
          </div>
-      </div>
-      <footer class="footer   footer-white ">
-         <div class="container">
-            <div class="row">
-               <nav class="footer-nav">
-               </nav>
-            </div>
-         </div>
+         <h6 class="text-white">&copy; Delas - Todos os direitos reservados </h6>
       </footer>
+      <!-- <footer class="footer footer-white">
+         <div class="container text-center">
+            <nav class="footer-nav">
+               <ul>
+               <li><h6>®Delas - Todos os direitos reservados</h6></li>
+               </ul>
+            </nav>
+         </div>
+      </footer> -->
 
             <!--modal login -->
             <div class="modal fade modal-login" tabindex="-1" role="dialog" aria-hidden="true">
          <div class="modal-dialog modal-lg">
             <div class="modal-content">
                <div class="modal-header">
-                  <h2 class="font-weight-bold text-primary">como deseja entrar?</h2>
+                  <h2 class="font-weight-bold text-primary">Como deseja entrar?</h2>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                   </button>
@@ -271,4 +261,3 @@
       <!-- scripts pessoais -->
    </body>
 </html>
-
